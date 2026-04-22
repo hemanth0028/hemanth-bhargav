@@ -55,7 +55,7 @@
 
 <!-- Resume Modal -->
 <div id="resumeModal">
-  <div class="modal-bg" onclick="closeResume()"></div>
+  <div class="modal-bg"></div>
   <div class="modal-content">
     <div class="flex items-center justify-between px-5 py-3 bg-[#0d1020]/95 backdrop-blur-md border-b border-white/5 shrink-0">
       <div class="flex items-center gap-3">
@@ -63,10 +63,10 @@
         <span class="font-semibold text-white text-sm">Resume — Kiladi Hemanth Bhargav</span>
       </div>
       <div class="flex items-center gap-2">
-        <a id="resumeDlLink" href="./Hemant_Bhargav_DV_Resume.pdf" download="Hemant_Bhargav_DV_Resume.pdf" class="px-3 py-1.5 bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-xs font-semibold rounded-lg hover:bg-indigo-500/30 transition-all flex items-center gap-1.5">
+        <a id="resumeDlLink" href="#" download="Hemant_Bhargav_DV_Resume.pdf" class="px-3 py-1.5 bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-xs font-semibold rounded-lg hover:bg-indigo-500/30 transition-all flex items-center gap-1.5">
           <span class="iconify text-sm" data-icon="mdi:download"></span>Download
         </a>
-        <a id="resumeNewTab" href="./Hemant_Bhargav_DV_Resume.pdf" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 bg-white/5 border border-white/10 text-gray-300 text-xs font-semibold rounded-lg hover:bg-white/10 transition-all flex items-center gap-1.5">
+        <a id="resumeNewTab" href="#" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 bg-white/5 border border-white/10 text-gray-300 text-xs font-semibold rounded-lg hover:bg-white/10 transition-all flex items-center gap-1.5">
           <span class="iconify text-sm" data-icon="mdi:open-in-new"></span>New Tab
         </a>
         <button onclick="closeResume()" class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
@@ -75,20 +75,20 @@
       </div>
     </div>
     <div class="flex-1 min-h-0 bg-white relative">
-      <div id="resumeLoading" class="hidden absolute inset-0 flex flex-col items-center justify-center gap-3 bg-white z-10">
+      <div id="resumeLoading" class="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-white z-10">
         <div class="spinner"></div>
         <p class="text-gray-500 text-sm">Loading resume...</p>
       </div>
-      <iframe id="resumeFrame" src="" class="w-full h-full border-0" style="min-height:70vh;display:none" title="Resume" onload="resumeLoaded()" onerror="resumeError()"></iframe>
-      <div id="resumeFallback" class="hidden absolute inset-0 flex flex-col items-center justify-center gap-4 p-12 text-center bg-[#0d1020] z-20">
+      <iframe id="resumeFrame" src="" class="w-full h-full border-0" style="min-height:70vh;display:none" title="Resume"></iframe>
+      <div id="resumeFallback" class="absolute inset-0 flex flex-col items-center justify-center gap-4 p-12 text-center bg-[#0d1020] z-20" style="display:none">
         <span class="iconify text-5xl text-gray-600" data-icon="mdi:file-pdf-box"></span>
         <p class="text-gray-300 text-base font-medium">Resume is ready</p>
         <p class="text-gray-500 text-sm max-w-xs">Click below to view or download. Your browser may block inline PDF preview.</p>
         <div class="flex flex-col sm:flex-row gap-3 mt-2">
-          <a id="resumeFallbackLink" href="./Hemant_Bhargav_DV_Resume.pdf" target="_blank" rel="noopener noreferrer" class="px-5 py-3 bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-sm font-semibold rounded-xl hover:bg-indigo-500/30 transition-all flex items-center gap-2">
+          <a id="resumeFallbackLink" href="#" target="_blank" rel="noopener noreferrer" class="px-5 py-3 bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-sm font-semibold rounded-xl hover:bg-indigo-500/30 transition-all flex items-center gap-2">
             <span class="iconify" data-icon="mdi:open-in-new"></span>View in New Tab
           </a>
-          <a id="resumeFallbackDl" href="./Hemant_Bhargav_DV_Resume.pdf" download="Hemant_Bhargav_DV_Resume.pdf" class="px-5 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-sm font-semibold rounded-xl hover:shadow-lg hover:shadow-indigo-500/25 transition-all flex items-center gap-2">
+          <a id="resumeFallbackDl" href="#" download="Hemant_Bhargav_DV_Resume.pdf" class="px-5 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-sm font-semibold rounded-xl hover:shadow-lg hover:shadow-indigo-500/25 transition-all flex items-center gap-2">
             <span class="iconify" data-icon="mdi:download"></span>Download PDF
           </a>
         </div>
@@ -339,7 +339,6 @@
       <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">Skills &amp; <span class="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">Technologies</span></h2>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-      <!-- HDL -->
       <div class="rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-indigo-500/15 transition-all duration-500 p-6" data-3d data-rx="28" data-ty="75" data-s="0.82">
         <div class="flex items-center gap-3 mb-4">
           <div class="w-11 h-11 rounded-xl bg-indigo-500/12 flex items-center justify-center"><span class="iconify text-xl text-indigo-400" data-icon="mdi:code-braces"></span></div>
@@ -351,7 +350,6 @@
           <div><div class="flex justify-between text-xs mb-1"><span class="text-gray-200 font-medium">RTL Design</span><span class="text-indigo-400 font-bold">82%</span></div><div class="h-1.5 bg-white/5 rounded-full overflow-hidden"><div class="sfill h-full bg-gradient-to-r from-indigo-500 to-indigo-400 rounded-full" style="width:82%"></div></div></div>
         </div>
       </div>
-      <!-- Verification -->
       <div class="rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-purple-500/20 transition-all duration-500 p-6" data-3d data-rx="28" data-ty="75" data-s="0.82" data-d="0.06">
         <div class="flex items-center gap-3 mb-4">
           <div class="w-11 h-11 rounded-xl bg-purple-500/12 flex items-center justify-center"><span class="iconify text-xl text-purple-400" data-icon="mdi:test-tube"></span></div>
@@ -364,7 +362,6 @@
           <div><div class="flex justify-between text-xs mb-1"><span class="text-gray-200 font-medium">Coverage</span><span class="text-purple-400 font-bold">88%</span></div><div class="h-1.5 bg-white/5 rounded-full overflow-hidden"><div class="sfill h-full bg-gradient-to-r from-purple-500 to-purple-400 rounded-full" style="width:88%"></div></div></div>
         </div>
       </div>
-      <!-- Tools -->
       <div class="rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-cyan-500/20 transition-all duration-500 p-6" data-3d data-rx="28" data-ty="75" data-s="0.82" data-d="0.12">
         <div class="flex items-center gap-3 mb-4">
           <div class="w-11 h-11 rounded-xl bg-cyan-500/12 flex items-center justify-center"><span class="iconify text-xl text-cyan-400" data-icon="mdi:console-line"></span></div>
@@ -376,7 +373,6 @@
           <div><div class="flex justify-between text-xs mb-1"><span class="text-gray-200 font-medium">Perl</span><span class="text-cyan-400 font-bold">82%</span></div><div class="h-1.5 bg-white/5 rounded-full overflow-hidden"><div class="sfill h-full bg-gradient-to-r from-cyan-500 to-cyan-400 rounded-full" style="width:82%"></div></div></div>
         </div>
       </div>
-      <!-- Protocols -->
       <div class="rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-pink-500/20 transition-all duration-500 p-6" data-3d data-rx="28" data-ty="75" data-s="0.82" data-d="0.18">
         <div class="flex items-center gap-3 mb-4">
           <div class="w-11 h-11 rounded-xl bg-pink-500/12 flex items-center justify-center"><span class="iconify text-xl text-pink-400" data-icon="mdi:file-cog"></span></div>
@@ -406,7 +402,6 @@
     </div>
     <div class="max-w-3xl mx-auto relative">
       <div class="absolute left-6 md:left-1/2 top-0 bottom-0 w-px tline md:-translate-x-px"></div>
-      <!-- Moschip -->
       <div class="relative flex flex-col md:flex-row items-start mb-12" data-3d data-ry="-25" data-ty="80" data-s="0.82">
         <div class="md:w-1/2 md:pr-12 md:text-right pl-16 md:pl-0 mb-4 md:mb-0">
           <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-bold text-indigo-300">
@@ -438,7 +433,6 @@
           </div>
         </div>
       </div>
-      <!-- Blackbucks -->
       <div class="relative flex flex-col md:flex-row items-start" data-3d data-ry="25" data-ty="80" data-s="0.82" data-d="0.05">
         <div class="md:w-1/2 md:pr-12 md:text-right pl-16 md:pl-0 mb-4 md:mb-0">
           <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-xs font-bold text-purple-300">
@@ -482,7 +476,6 @@
       <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">Verification <span class="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">Projects</span></h2>
     </div>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-7">
-      <!-- Project 1: Ethernet -->
       <div class="tilt rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-indigo-500/20 transition-all duration-500 overflow-hidden" data-3d data-rx="30" data-ry="-12" data-ty="90" data-s="0.78">
         <div class="tilt-in">
           <div class="proj-vis h-44 relative">
@@ -526,7 +519,6 @@
           </div>
         </div>
       </div>
-      <!-- Project 2: APB -->
       <div class="tilt rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-purple-500/20 transition-all duration-500 overflow-hidden" data-3d data-rx="30" data-ry="12" data-ty="90" data-s="0.78" data-d="0.06">
         <div class="tilt-in">
           <div class="proj-vis h-44 relative">
@@ -567,7 +559,6 @@
           </div>
         </div>
       </div>
-      <!-- Project 3: RAM -->
       <div class="tilt rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-cyan-500/20 transition-all duration-500 overflow-hidden" data-3d data-rx="30" data-ry="-12" data-ty="90" data-s="0.78" data-d="0.12">
         <div class="tilt-in">
           <div class="proj-vis h-44 relative">
@@ -610,7 +601,6 @@
           </div>
         </div>
       </div>
-      <!-- Project 4: Counter -->
       <div class="tilt rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-amber-500/20 transition-all duration-500 overflow-hidden" data-3d data-rx="30" data-ry="12" data-ty="90" data-s="0.78" data-d="0.18">
         <div class="tilt-in">
           <div class="proj-vis h-44 relative">
@@ -727,9 +717,9 @@
           <div class="w-11 h-11 rounded-xl bg-indigo-500/12 flex items-center justify-center group-hover:bg-indigo-500/20 transition-colors shrink-0"><span class="iconify text-xl text-indigo-400" data-icon="mdi:linkedin"></span></div>
           <div><div class="text-[10px] text-gray-500 uppercase tracking-wider font-bold">LinkedIn</div><div class="text-sm text-white font-medium">Hemanth Bhargav Kiladi</div></div>
         </a>
-        <a href="https://github.com/hemanth0028" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 rounded-xl bg-white/[0.05] border border-white/[0.08] hover:border-indigo-500/25 transition-all group">
+        <a href="https://github.com/hemanth-bhargav" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 rounded-xl bg-white/[0.05] border border-white/[0.08] hover:border-indigo-500/25 transition-all group">
           <div class="w-11 h-11 rounded-xl bg-indigo-500/12 flex items-center justify-center group-hover:bg-indigo-500/20 transition-colors shrink-0"><span class="iconify text-xl text-indigo-400" data-icon="mdi:github"></span></div>
-          <div><div class="text-[10px] text-gray-500 uppercase tracking-wider font-bold">GitHub</div><div class="text-sm text-white font-medium">hemanth0028</div></div>
+          <div><div class="text-[10px] text-gray-500 uppercase tracking-wider font-bold">GitHub</div><div class="text-sm text-white font-medium">hemanth-bhargav</div></div>
         </a>
       </div>
       <div class="lg:col-span-3">
@@ -768,218 +758,86 @@
 <!-- Three.js 3D Background -->
 <script type="module">
 import * as THREE from 'three';
-
-const IS_MOB = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(navigator.userAgent) || innerWidth < 768;
-const PXR = IS_MOB ? 1.5 : Math.min(devicePixelRatio, 2);
-const P_N = IS_MOB ? 80 : 300;
-const F_N = IS_MOB ? 6 : 18;
-const R_SEG = IS_MOB ? 32 : 128;
-const L_N = IS_MOB ? 0 : P_N;
-const TK_SEG = IS_MOB ? 64 : 200;
-
-const canvas = document.getElementById('bg3d');
-const R = new THREE.WebGLRenderer({ canvas, antialias: !IS_MOB, alpha: true, powerPreference: IS_MOB ? 'low-power' : 'high-performance' });
-R.setSize(innerWidth, innerHeight);
-R.setPixelRatio(PXR);
-if (!IS_MOB) { R.toneMapping = THREE.ACESFilmicToneMapping; R.toneMappingExposure = 1.2; }
-
-const S = new THREE.Scene();
-S.fog = new THREE.FogExp2(0x06080f, 0.013);
-const cam = new THREE.PerspectiveCamera(60, innerWidth / innerHeight, 0.1, 200);
-cam.position.set(0, 2, 38);
-
-// Rings
-const RD = [
-  { r: 13, t: .04, c: 0x818cf8, rx: .4, op: .28, sp: .12 },
-  { r: 16, t: .03, c: 0x6366f1, rx: 1.3, ry: .6, op: .2, sp: -.08 },
-  { r: 20, t: .025, c: 0xa78bfa, rx: .9, ry: -.5, op: .16, sp: .06 }
-];
-if (!IS_MOB) RD.push({ r: 10, t: .02, c: 0xc084fc, rx: 2, ry: .3, op: .22, sp: -.15 });
-
-const rings = RD.map(d => {
-  const m = new THREE.Mesh(
-    new THREE.TorusGeometry(Math.max(.1, d.r), Math.max(.005, d.t), 6, R_SEG),
-    new THREE.MeshBasicMaterial({ color: d.c, transparent: true, opacity: d.op })
-  );
-  m.rotation.set(d.rx || 0, d.ry || 0, 0);
-  m.userData.sp = d.sp;
-  S.add(m);
-  return m;
-});
-
-// Torus Knot
-const tk = new THREE.Mesh(
-  new THREE.TorusKnotGeometry(4.5, 1.2, TK_SEG, IS_MOB ? 16 : 32, 2, 3),
-  new THREE.MeshBasicMaterial({ color: 0x818cf8, wireframe: true, transparent: true, opacity: .1 })
-);
-S.add(tk);
-
-// Icosahedron
-const ic = new THREE.Mesh(
-  new THREE.IcosahedronGeometry(2.8, IS_MOB ? 0 : 1),
-  new THREE.MeshBasicMaterial({ color: 0x6366f1, wireframe: true, transparent: true, opacity: .15 })
-);
-S.add(ic);
-
-// Floating shapes
-const fG = [
-  () => new THREE.IcosahedronGeometry(Math.max(.01, .3 + Math.random() * .5), 0),
-  () => new THREE.OctahedronGeometry(Math.max(.01, .3 + Math.random() * .4), 0),
-  () => new THREE.TetrahedronGeometry(Math.max(.01, .4 + Math.random() * .3), 0)
-];
-const fC = [0x818cf8, 0x6366f1, 0xa78bfa, 0xc084fc];
-const fls = [];
-for (let i = 0; i < F_N; i++) {
-  const g = fG[i % fG.length]();
-  const m = new THREE.Mesh(g, new THREE.MeshBasicMaterial({ color: fC[i % fC.length], wireframe: true, transparent: true, opacity: .12 }));
-  const a = (i / F_N) * Math.PI * 2 + Math.random() * .5;
-  const r = 8 + Math.random() * 14;
-  const y = (Math.random() - .5) * 18;
-  m.position.set(Math.cos(a) * r, y, Math.sin(a) * r);
-  m.userData = { a, r, y, sp: .03 + Math.random() * .08, fs: .3 + Math.random() * .4, fa: 1.5 + Math.random() * 2, rx: .002 + Math.random() * .01, ry: .002 + Math.random() * .01 };
-  S.add(m);
-  fls.push(m);
-}
-
-// Particles
-const pP = new Float32Array(P_N * 3);
-const pC = new Float32Array(P_N * 3);
-const cO = [[.506, .549, .973], [.388, .235, .973], [.655, .545, .98]];
-for (let i = 0; i < P_N; i++) {
-  pP[i * 3] = (Math.random() - .5) * 80;
-  pP[i * 3 + 1] = (Math.random() - .5) * 60;
-  pP[i * 3 + 2] = (Math.random() - .5) * 80;
-  const c = cO[i % cO.length];
-  pC[i * 3] = c[0]; pC[i * 3 + 1] = c[1]; pC[i * 3 + 2] = c[2];
-}
-const pG = new THREE.BufferGeometry();
-pG.setAttribute('position', new THREE.BufferAttribute(pP, 3));
-pG.setAttribute('color', new THREE.BufferAttribute(pC, 3));
-S.add(new THREE.Points(pG, new THREE.PointsMaterial({ size: IS_MOB ? .15 : .1, vertexColors: true, transparent: true, opacity: .45, sizeAttenuation: true })));
-
-// Lines
-let lG = null, lP = null;
-if (!IS_MOB && L_N > 0) {
-  lG = new THREE.BufferGeometry();
-  lP = new Float32Array(L_N * 6);
-  lG.setAttribute('position', new THREE.BufferAttribute(lP, 3));
-  S.add(new THREE.LineSegments(lG, new THREE.LineBasicMaterial({ color: 0x818cf8, transparent: true, opacity: .03 })));
-}
-
-// Lights
-if (!IS_MOB) {
-  S.add(new THREE.PointLight(0x818cf8, 4, 70));
-  S.add(new THREE.PointLight(0x6366f1, 4, 70));
-  S.add(new THREE.PointLight(0xa78bfa, 2, 50));
-}
-
-let comp = null;
-let sP = 0, tSP = 0, mx = 0, my = 0, tmx = 0, tmy = 0;
-let firstFrame = true;
-
-addEventListener('scroll', () => {
-  const m = document.body.scrollHeight - innerHeight;
-  tSP = m > 0 ? scrollY / m : 0;
-}, { passive: true });
-
-if (!IS_MOB) {
-  addEventListener('mousemove', e => {
-    tmx = (e.clientX / innerWidth - .5) * 2;
-    tmy = (e.clientY / innerHeight - .5) * 2;
-  }, { passive: true });
-}
-
-addEventListener('resize', () => {
-  cam.aspect = innerWidth / innerHeight;
-  cam.updateProjectionMatrix();
-  R.setSize(innerWidth, innerHeight);
-  if (comp) comp.setSize(innerWidth, innerHeight);
-});
-
-function anim() {
-  requestAnimationFrame(anim);
-  const t = performance.now() * .001;
-  sP += (tSP - sP) * .04;
-  if (!IS_MOB) { mx += (tmx - mx) * .04; my += (tmy - my) * .04; }
-
-  const ca = sP * Math.PI * 1.8;
-  const cd = 38 - sP * 12;
-  cam.position.x = Math.sin(ca) * cd + (IS_MOB ? 0 : mx * 5);
-  cam.position.z = Math.cos(ca) * cd;
-  cam.position.y = 2 - sP * 8 - (IS_MOB ? 0 : my * 3);
-  cam.lookAt(0, -sP * 3, 0);
-
-  tk.rotation.x = t * .06 + sP * Math.PI;
-  tk.rotation.y = t * .1 + sP * Math.PI * .5;
-  ic.rotation.x = -t * .12;
-  ic.rotation.y = -t * .18;
-  ic.scale.setScalar(1 + Math.sin(t * .4) * .12);
-
-  rings.forEach(r => { r.rotation.z += r.userData.sp * .003; r.rotation.x += r.userData.sp * .001; });
-
-  fls.forEach(s => {
-    const d = s.userData;
-    d.a += d.sp * .006;
-    s.position.x = Math.cos(d.a) * d.r;
-    s.position.z = Math.sin(d.a) * d.r;
-    s.position.y = d.y + Math.sin(t * d.fs + d.a) * d.fa;
-    s.rotation.x += d.rx;
-    s.rotation.y += d.ry;
-  });
-
-  const pts = S.children.find(c => c instanceof THREE.Points);
-  if (pts) { pts.rotation.y = t * .012 + sP * .4; pts.rotation.x = t * .006; }
-
-  if (lG && lP) {
-    const pp = pG.attributes.position.array;
-    let li = 0;
-    const mD = 7, mD2 = mD * mD;
-    for (let i = 0; i < P_N && li < L_N; i++) {
-      const ix = i * 3, iy = i * 3 + 1, iz = i * 3 + 2;
-      for (let j = i + 1; j < P_N && li < L_N; j++) {
-        const jx = j * 3, jy = j * 3 + 1, jz = j * 3 + 2;
-        const dx = pp[ix] - pp[jx], dy = pp[iy] - pp[jy], dz = pp[iz] - pp[jz];
-        if (dx * dx + dy * dy + dz * dz < mD2) {
-          lP[li * 6] = pp[ix]; lP[li * 6 + 1] = pp[iy]; lP[li * 6 + 2] = pp[iz];
-          lP[li * 6 + 3] = pp[jx]; lP[li * 6 + 4] = pp[jy]; lP[li * 6 + 5] = pp[jz];
-          li++;
-        }
-      }
-    }
-    lG.setDrawRange(0, li * 2);
-    lG.attributes.position.needsUpdate = true;
-  }
-
-  tk.material.color.setHSL((.7 + sP * .2) % 1, .8, .65);
-  if (comp) { comp.render(); } else { R.render(S, cam); }
-
-  if (firstFrame) {
-    firstFrame = false;
-    document.getElementById('loader').classList.add('hidden');
-  }
-}
+var IS_MOB=/Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(navigator.userAgent)||innerWidth<768;
+var PXR=IS_MOB?1.5:Math.min(devicePixelRatio,2);
+var P_N=IS_MOB?80:300,F_N=IS_MOB?6:18,R_SEG=IS_MOB?32:128,L_N=IS_MOB?0:P_N,TK_SEG=IS_MOB?64:200;
+var canvas=document.getElementById('bg3d');
+var R=new THREE.WebGLRenderer({canvas,antialias:!IS_MOB,alpha:true,powerPreference:IS_MOB?'low-power':'high-performance'});
+R.setSize(innerWidth,innerHeight);R.setPixelRatio(PXR);
+if(!IS_MOB){R.toneMapping=THREE.ACESFilmicToneMapping;R.toneMappingExposure=1.2;}
+var S=new THREE.Scene();S.fog=new THREE.FogExp2(0x06080f,0.013);
+var cam=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,0.1,200);cam.position.set(0,2,38);
+var RD=[{r:13,t:.04,c:0x818cf8,rx:.4,op:.28,sp:.12},{r:16,t:.03,c:0x6366f1,rx:1.3,ry:.6,op:.2,sp:-.08},{r:20,t:.025,c:0xa78bfa,rx:.9,ry:-.5,op:.16,sp:.06}];
+if(!IS_MOB)RD.push({r:10,t:.02,c:0xc084fc,rx:2,ry:.3,op:.22,sp:-.15});
+var rings=RD.map(function(d){var m=new THREE.Mesh(new THREE.TorusGeometry(Math.max(.1,d.r),Math.max(.005,d.t),6,R_SEG),new THREE.MeshBasicMaterial({color:d.c,transparent:true,opacity:d.op}));m.rotation.set(d.rx||0,d.ry||0,0);m.userData.sp=d.sp;S.add(m);return m;});
+var tk=new THREE.Mesh(new THREE.TorusKnotGeometry(4.5,1.2,TK_SEG,IS_MOB?16:32,2,3),new THREE.MeshBasicMaterial({color:0x818cf8,wireframe:true,transparent:true,opacity:.1}));S.add(tk);
+var ic=new THREE.Mesh(new THREE.IcosahedronGeometry(2.8,IS_MOB?0:1),new THREE.MeshBasicMaterial({color:0x6366f1,wireframe:true,transparent:true,opacity:.15}));S.add(ic);
+var fG=[function(){return new THREE.IcosahedronGeometry(Math.max(.01,.3+Math.random()*.5),0);},function(){return new THREE.OctahedronGeometry(Math.max(.01,.3+Math.random()*.4),0);},function(){return new THREE.TetrahedronGeometry(Math.max(.01,.4+Math.random()*.3),0);}];
+var fC=[0x818cf8,0x6366f1,0xa78bfa,0xc084fc],fls=[];
+for(var i=0;i<F_N;i++){var g=fG[i%fG.length]();var m=new THREE.Mesh(g,new THREE.MeshBasicMaterial({color:fC[i%fC.length],wireframe:true,transparent:true,opacity:.12}));var a=(i/F_N)*Math.PI*2+Math.random()*.5;var r=8+Math.random()*14;var y=(Math.random()-.5)*18;m.position.set(Math.cos(a)*r,y,Math.sin(a)*r);m.userData={a:a,r:r,y:y,sp:.03+Math.random()*.08,fs:.3+Math.random()*.4,fa:1.5+Math.random()*2,rx:.002+Math.random()*.01,ry:.002+Math.random()*.01};S.add(m);fls.push(m);}
+var pP=new Float32Array(P_N*3),pC=new Float32Array(P_N*3),cO=[[.506,.549,.973],[.388,.235,.973],[.655,.545,.98]];
+for(var i=0;i<P_N;i++){pP[i*3]=(Math.random()-.5)*80;pP[i*3+1]=(Math.random()-.5)*60;pP[i*3+2]=(Math.random()-.5)*80;var c=cO[i%cO.length];pC[i*3]=c[0];pC[i*3+1]=c[1];pC[i*3+2]=c[2];}
+var pG=new THREE.BufferGeometry();pG.setAttribute('position',new THREE.BufferAttribute(pP,3));pG.setAttribute('color',new THREE.BufferAttribute(pC,3));
+S.add(new THREE.Points(pG,new THREE.PointsMaterial({size:IS_MOB?.15:.1,vertexColors:true,transparent:true,opacity:.45,sizeAttenuation:true})));
+var lG=null,lP=null;
+if(!IS_MOB&&L_N>0){lG=new THREE.BufferGeometry();lP=new Float32Array(L_N*6);lG.setAttribute('position',new THREE.BufferAttribute(lP,3));S.add(new THREE.LineSegments(lG,new THREE.LineBasicMaterial({color:0x818cf8,transparent:true,opacity:.03})));}
+if(!IS_MOB){S.add(new THREE.PointLight(0x818cf8,4,70));S.add(new THREE.PointLight(0x6366f1,4,70));S.add(new THREE.PointLight(0xa78bfa,2,50));}
+var comp=null,sP=0,tSP=0,mx=0,my=0,tmx=0,tmy=0,firstFrame=true;
+addEventListener('scroll',function(){var m=document.body.scrollHeight-innerHeight;tSP=m>0?scrollY/m:0;},{passive:true});
+if(!IS_MOB)addEventListener('mousemove',function(e){tmx=(e.clientX/innerWidth-.5)*2;tmy=(e.clientY/innerHeight-.5)*2;},{passive:true});
+addEventListener('resize',function(){cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();R.setSize(innerWidth,innerHeight);if(comp)comp.setSize(innerWidth,innerHeight);});
+function anim(){requestAnimationFrame(anim);var t=performance.now()*.001;sP+=(tSP-sP)*.04;if(!IS_MOB){mx+=(tmx-mx)*.04;my+=(tmy-my)*.04;}
+var ca=sP*Math.PI*1.8,cd=38-sP*12;cam.position.x=Math.sin(ca)*cd+(IS_MOB?0:mx*5);cam.position.z=Math.cos(ca)*cd;cam.position.y=2-sP*8-(IS_MOB?0:my*3);cam.lookAt(0,-sP*3,0);
+tk.rotation.x=t*.06+sP*Math.PI;tk.rotation.y=t*.1+sP*Math.PI*.5;ic.rotation.x=-t*.12;ic.rotation.y=-t*.18;ic.scale.setScalar(1+Math.sin(t*.4)*.12);
+rings.forEach(function(r){r.rotation.z+=r.userData.sp*.003;r.rotation.x+=r.userData.sp*.001;});
+fls.forEach(function(s){var d=s.userData;d.a+=d.sp*.006;s.position.x=Math.cos(d.a)*d.r;s.position.z=Math.sin(d.a)*d.r;s.position.y=d.y+Math.sin(t*d.fs+d.a)*d.fa;s.rotation.x+=d.rx;s.rotation.y+=d.ry;});
+var pts=S.children.find(function(c){return c instanceof THREE.Points;});if(pts){pts.rotation.y=t*.012+sP*.4;pts.rotation.x=t*.006;}
+if(lG&&lP){var pp=pG.attributes.position.array;var li=0;var mD=7,mD2=mD*mD;for(var i=0;i<P_N&&li<L_N;i++){var ix=i*3,iy=i*3+1,iz=i*3+2;for(var j=i+1;j<P_N&&li<L_N;j++){var jx=j*3,jy=j*3+1,jz=j*3+2;var dx=pp[ix]-pp[jx],dy=pp[iy]-pp[jy],dz=pp[iz]-pp[jz];if(dx*dx+dy*dy+dz*dz<mD2){lP[li*6]=pp[ix];lP[li*6+1]=pp[iy];lP[li*6+2]=pp[iz];lP[li*6+3]=pp[jx];lP[li*6+4]=pp[jy];lP[li*6+5]=pp[jz];li++;}}}lG.setDrawRange(0,li*2);lG.attributes.position.needsUpdate=true;}
+tk.material.color.setHSL((.7+sP*.2)%1,.8,.65);if(comp){comp.render();}else{R.render(S,cam);}
+if(firstFrame){firstFrame=false;document.getElementById('loader').classList.add('hidden');}}
 anim();
-
-// Post-processing (desktop only)
-if (!IS_MOB) {
-  Promise.all([
-    import('three/addons/postprocessing/EffectComposer.js'),
-    import('three/addons/postprocessing/RenderPass.js'),
-    import('three/addons/postprocessing/UnrealBloomPass.js')
-  ]).then(([EC, RP, UB]) => {
-    comp = new EC.EffectComposer(R);
-    comp.addPass(new RP.RenderPass(S, cam));
-    comp.addPass(new UB.UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 1.3, .5, .2));
-  }).catch(() => {});
-}
+if(!IS_MOB){Promise.all([import('three/addons/postprocessing/EffectComposer.js'),import('three/addons/postprocessing/RenderPass.js'),import('three/addons/postprocessing/UnrealBloomPass.js')]).then(function(mods){comp=new mods[0].EffectComposer(R);comp.addPass(new mods[1].RenderPass(S,cam));comp.addPass(new mods[2].UnrealBloomPass(new THREE.Vector2(innerWidth,innerHeight),1.3,.5,.2));}).catch(function(){});}
 </script>
 
 <!-- Page Interactions -->
 <script>
-/* Resume Modal */
-var RESUME_URL = './Hemant_Bhargav_DV_Resume.pdf';
+/*
+ * ╔════════════════════════════════════════════════════════════════╗
+ * ║  RESUME CONFIG — Change ONLY this one URL                    ║
+ * ║                                                              ║
+ * ║  Paste the GitHub URL to your resume PDF file here.          ║
+ * ║  Example formats that work:                                   ║
+ * ║    https://github.com/hemanth-bhargav/repo/blob/main/res.pdf ║
+ * ║    https://github.com/hemanth-bhargav/repo/blob/master/res.pdf║
+ * ║                                                              ║
+ * ║  The code auto-generates jsDelivr CDN + raw fallback URLs.   ║
+ * ╚════════════════════════════════════════════════════════════════╝
+ */
+var GITHUB_RESUME_URL = 'https://github.com/hemanth-bhargav/hemanth-bhargav.github.io/blob/main/Hemant_Bhargav_DV_Resume.pdf';
+
 var RESUME_NAME = 'Hemant_Bhargav_DV_Resume.pdf';
+
+function parseGitHubUrl(url) {
+  var m = url.match(/github\.com\/([^\/]+)\/([^\/]+)\/blob\/([^\/]+)\/(.+)/);
+  if (m) return { user: m[1], repo: m[2], branch: m[3], path: m[4] };
+  m = url.match(/github\.com\/([^\/]+)\/([^\/]+)\/tree\/([^\/]+)\/(.+)/);
+  if (m) return { user: m[1], repo: m[2], branch: m[3], path: m[4] };
+  return null;
+}
+
+var parsed = parseGitHubUrl(GITHUB_RESUME_URL);
+var RESUME_URLS = [];
+if (parsed) {
+  RESUME_URLS.push('https://cdn.jsdelivr.net/gh/' + parsed.user + '/' + parsed.repo + '@' + parsed.branch + '/' + parsed.path);
+  RESUME_URLS.push('https://raw.githubusercontent.com/' + parsed.user + '/' + parsed.repo + '/' + parsed.branch + '/' + parsed.path);
+  RESUME_URLS.push(GITHUB_RESUME_URL);
+} else {
+  RESUME_URLS.push(GITHUB_RESUME_URL);
+}
+var RESUME_DOWNLOAD_URL = RESUME_URLS[0];
+
 var resumeTimeout = null;
+var currentResumeIdx = 0;
 
 function openResume() {
   var modal = document.getElementById('resumeModal');
@@ -991,37 +849,56 @@ function openResume() {
   var fallbackDl = document.getElementById('resumeFallbackDl');
   var dlLink = document.getElementById('resumeDlLink');
 
-  newTabLink.href = RESUME_URL;
-  fallbackLink.href = RESUME_URL;
-  if (fallbackDl) fallbackDl.href = RESUME_URL;
-  if (dlLink) dlLink.href = RESUME_URL;
+  [newTabLink, fallbackLink, dlLink, fallbackDl].forEach(function(el) {
+    if (el) { el.href = RESUME_DOWNLOAD_URL; if (el.hasAttribute('download')) el.setAttribute('download', RESUME_NAME); }
+  });
 
   modal.classList.add('show');
   document.body.style.overflow = 'hidden';
-
-  loading.classList.remove('hidden');
   loading.style.display = 'flex';
+  loading.classList.remove('hidden');
   frame.style.display = 'none';
   frame.src = '';
-  fallback.classList.add('hidden');
   fallback.style.display = 'none';
+  fallback.classList.add('hidden');
 
   if (resumeTimeout) clearTimeout(resumeTimeout);
+  currentResumeIdx = 0;
+  tryLoadResume(frame, loading, fallback);
+}
 
-  setTimeout(function () {
-    frame.src = RESUME_URL;
-    frame.style.display = 'block';
-    resumeTimeout = setTimeout(function () {
-      if (loading.style.display !== 'none') resumeError();
-    }, 6000);
-  }, 100);
+function tryLoadResume(frame, loading, fallback) {
+  if (currentResumeIdx >= RESUME_URLS.length) { resumeError(); return; }
+  var url = RESUME_URLS[currentResumeIdx];
+  currentResumeIdx++;
+
+  fetch(url, { method: 'HEAD', mode: 'no-cors' })
+    .then(function() {
+      frame.src = url;
+      frame.style.display = 'block';
+      resumeTimeout = setTimeout(function() {
+        if (loading.style.display !== 'none') {
+          frame.src = ''; frame.style.display = 'none';
+          tryLoadResume(frame, loading, fallback);
+        }
+      }, 5000);
+    })
+    .catch(function() {
+      frame.src = url;
+      frame.style.display = 'block';
+      resumeTimeout = setTimeout(function() {
+        if (loading.style.display !== 'none') {
+          frame.src = ''; frame.style.display = 'none';
+          tryLoadResume(frame, loading, fallback);
+        }
+      }, 5000);
+    });
 }
 
 function resumeLoaded() {
   if (resumeTimeout) clearTimeout(resumeTimeout);
-  var loading = document.getElementById('resumeLoading');
-  loading.style.display = 'none';
-  loading.classList.add('hidden');
+  document.getElementById('resumeLoading').style.display = 'none';
+  document.getElementById('resumeLoading').classList.add('hidden');
   document.getElementById('resumeFrame').style.display = 'block';
 }
 
@@ -1053,10 +930,10 @@ var ticking = false;
 function update3D() {
   if (ticking) return;
   ticking = true;
-  requestAnimationFrame(function () {
+  requestAnimationFrame(function() {
     ticking = false;
     var vh = innerHeight;
-    document.querySelectorAll('[data-3d]').forEach(function (el) {
+    document.querySelectorAll('[data-3d]').forEach(function(el) {
       var r = el.getBoundingClientRect();
       var cy = r.top + r.height / 2;
       var raw = 1 - (cy / vh);
@@ -1076,64 +953,51 @@ addEventListener('scroll', update3D, { passive: true });
 update3D();
 
 /* Navbar & Scroll Progress */
-addEventListener('scroll', function () {
+addEventListener('scroll', function() {
   var n = document.getElementById('nav');
   if (scrollY > 50) {
-    n.style.background = 'rgba(6,8,15,.9)';
-    n.style.backdropFilter = 'blur(24px)';
-    n.style.borderBottom = '1px solid rgba(255,255,255,.03)';
+    n.style.background = 'rgba(6,8,15,.9)'; n.style.backdropFilter = 'blur(24px)'; n.style.borderBottom = '1px solid rgba(255,255,255,.03)';
   } else {
-    n.style.background = 'transparent';
-    n.style.backdropFilter = 'none';
-    n.style.borderBottom = 'none';
+    n.style.background = 'transparent'; n.style.backdropFilter = 'none'; n.style.borderBottom = 'none';
   }
-
   var m = document.body.scrollHeight - innerHeight;
   document.getElementById('scrollBar').style.width = (m > 0 ? (scrollY / m) * 100 : 0) + '%';
-
   var c = '';
-  document.querySelectorAll('section[id]').forEach(function (s) {
-    if (scrollY >= s.offsetTop - 140) c = s.id;
-  });
-  document.querySelectorAll('.nav-l').forEach(function (l) {
-    l.classList.toggle('on', l.getAttribute('href') === '#' + c);
-  });
+  document.querySelectorAll('section[id]').forEach(function(s) { if (scrollY >= s.offsetTop - 140) c = s.id; });
+  document.querySelectorAll('.nav-l').forEach(function(l) { l.classList.toggle('on', l.getAttribute('href') === '#' + c); });
 }, { passive: true });
 
 /* Cursor Glow */
 if (!IS_MOB2) {
   var glow = document.getElementById('cursorGlow');
-  addEventListener('mousemove', function (e) {
-    glow.style.left = e.clientX + 'px';
-    glow.style.top = e.clientY + 'px';
-  }, { passive: true });
+  addEventListener('mousemove', function(e) { glow.style.left = e.clientX + 'px'; glow.style.top = e.clientY + 'px'; }, { passive: true });
 }
 
 /* Tilt Cards */
 if (!IS_MOB2) {
-  document.querySelectorAll('.tilt').forEach(function (c) {
-    c.addEventListener('mousemove', function (e) {
+  document.querySelectorAll('.tilt').forEach(function(c) {
+    c.addEventListener('mousemove', function(e) {
       var r = c.getBoundingClientRect();
       var x = (e.clientX - r.left) / r.width - .5;
       var y = (e.clientY - r.top) / r.height - .5;
       c.style.transform = 'perspective(800px) rotateY(' + (x * 18) + 'deg) rotateX(' + (-y * 18) + 'deg) scale(1.03)';
       c.style.boxShadow = (-x * 25) + 'px ' + (y * 25) + 'px 50px rgba(129,140,248,.06),inset 0 0 1px rgba(129,140,248,.08)';
     });
-    c.addEventListener('mouseleave', function () {
+    c.addEventListener('mouseleave', function() {
       c.style.transition = 'transform .6s cubic-bezier(.25,.46,.45,.94),box-shadow .6s';
       c.style.transform = 'perspective(800px) rotateY(0) rotateX(0) scale(1)';
       c.style.boxShadow = 'none';
-      setTimeout(function () { c.style.transition = ''; }, 600);
+      setTimeout(function() { c.style.transition = ''; }, 600);
     });
-    c.addEventListener('mouseenter', function () { c.style.transition = 'none'; });
+    c.addEventListener('mouseenter', function() { c.style.transition = 'none'; });
   });
 }
 
-/* Modal close on backdrop click */
-document.getElementById('resumeModal').addEventListener('click', function (e) {
+/* Modal close on backdrop click & Escape */
+document.getElementById('resumeModal').addEventListener('click', function(e) {
   if (e.target === e.querySelector('.modal-bg')) closeResume();
 });
-document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeResume(); });
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeResume(); });
 
 /* Mobile Menu */
 var mm = document.getElementById('mobMenu'), mo = document.getElementById('mobOv');
@@ -1142,26 +1006,26 @@ function closeMob() { mm.classList.remove('open'); mo.classList.remove('show'); 
 document.getElementById('mobBtn').addEventListener('click', openM);
 document.getElementById('mobClose').addEventListener('click', closeMob);
 mo.addEventListener('click', closeMob);
-document.querySelectorAll('.ml').forEach(function (l) { l.addEventListener('click', closeMob); });
+document.querySelectorAll('.ml').forEach(function(l) { l.addEventListener('click', closeMob); });
 
 /* Toast */
 function showToast(m) {
   var t = document.getElementById('toast');
   document.getElementById('toastMsg').textContent = m;
   t.classList.add('show');
-  setTimeout(function () { t.classList.remove('show'); }, 3000);
+  setTimeout(function() { t.classList.remove('show'); }, 3000);
 }
 
 /* Contact Form */
-document.getElementById('contactForm').addEventListener('submit', function (e) {
+document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
   showToast("Message sent! I'll get back to you soon.");
   e.target.reset();
 });
 
 /* Smooth Scroll */
-document.querySelectorAll('a[href^="#"]').forEach(function (a) {
-  a.addEventListener('click', function (e) {
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
     e.preventDefault();
     var t = document.querySelector(a.getAttribute('href'));
     if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
