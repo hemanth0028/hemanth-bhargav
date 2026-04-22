@@ -41,6 +41,7 @@
 .proj-vis{background:linear-gradient(135deg,#0b0e1a,#10142a);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .proj-vis::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(129,140,248,.04) 0%,transparent 70%)}
 @media(max-width:768px){.chip-flt{animation:none}}
+@keyframes spin{to{transform:rotate(360deg)}}.spinner{width:28px;height:28px;border:2.5px solid rgba(129,140,248,.15);border-top-color:#818cf8;border-radius:50%;animation:spin .7s linear infinite}
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 </head>
@@ -59,16 +60,27 @@
 <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center font-bold text-white text-sm">H</div><span class="font-semibold text-white text-sm">Resume — Kiladi Hemanth Bhargav</span></div>
 <div class="flex items-center gap-2">
 <button onclick="downloadResume()" class="px-3 py-1.5 bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-xs font-semibold rounded-lg hover:bg-indigo-500/30 transition-all flex items-center gap-1.5"><span class="iconify text-sm" data-icon="mdi:download"></span>Download</button>
-<a id="resumeNewTab" href="./Hemant_Bhargav_DV_Resume.pdf" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 bg-white/5 border border-white/10 text-gray-300 text-xs font-semibold rounded-lg hover:bg-white/10 transition-all flex items-center gap-1.5"><span class="iconify text-sm" data-icon="mdi:open-in-new"></span>New Tab</a>
+<a id="resumeNewTab" href="#" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 bg-white/5 border border-white/10 text-gray-300 text-xs font-semibold rounded-lg hover:bg-white/10 transition-all flex items-center gap-1.5"><span class="iconify text-sm" data-icon="mdi:open-in-new"></span>New Tab</a>
 <button onclick="closeResume()" class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors"><span class="iconify text-gray-400" data-icon="mdi:close"></span></button>
 </div>
 </div>
-<div class="flex-1 min-h-0 bg-white">
+<div class="flex-1 min-h-0 bg-white relative">
+<!-- Loading state -->
+<div id="resumeLoading" class="hidden absolute inset-0 flex flex-col items-center justify-center gap-3 bg-white z-10">
+<div class="spinner"></div>
+<p class="text-gray-500 text-sm">Loading resume...</p>
+</div>
+<!-- iframe for viewing -->
 <iframe id="resumeFrame" src="" class="w-full h-full border-0" style="min-height:70vh" title="Resume"></iframe>
-<div id="resumeFallback" class="hidden flex-col items-center justify-center gap-4 p-12 text-center">
+<!-- Fallback if PDF can't load -->
+<div id="resumeFallback" class="hidden absolute inset-0 flex flex-col items-center justify-center gap-4 p-12 text-center bg-[#0d1020] z-20">
 <span class="iconify text-5xl text-gray-600" data-icon="mdi:file-pdf-box"></span>
-<p class="text-gray-400 text-sm">PDF viewer loading...</p>
-<a id="resumeFallbackLink" href="./Hemant_Bhargav_DV_Resume.pdf" target="_blank" rel="noopener noreferrer" class="px-5 py-3 bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-sm font-semibold rounded-xl hover:bg-indigo-500/30 transition-all flex items-center gap-2"><span class="iconify" data-icon="mdi:open-in-new"></span>Open in New Tab</a>
+<p class="text-gray-300 text-base font-medium">Resume is ready</p>
+<p class="text-gray-500 text-sm max-w-xs">Click below to view or download. Your browser may block inline PDF preview.</p>
+<div class="flex flex-col sm:flex-row gap-3 mt-2">
+<a id="resumeFallbackLink" href="#" target="_blank" rel="noopener noreferrer" class="px-5 py-3 bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-sm font-semibold rounded-xl hover:bg-indigo-500/30 transition-all flex items-center gap-2"><span class="iconify" data-icon="mdi:open-in-new"></span>View in New Tab</a>
+<button onclick="downloadResume()" class="px-5 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-sm font-semibold rounded-xl hover:shadow-lg hover:shadow-indigo-500/25 transition-all flex items-center gap-2"><span class="iconify" data-icon="mdi:download"></span>Download PDF</button>
+</div>
 </div>
 </div>
 </div>
@@ -277,129 +289,13 @@
 <div class="text-center mb-14" data-3d data-rx="22" data-ty="65" data-s="0.87"><div class="flex items-center justify-center gap-3 mb-4"><div class="h-px w-12 bg-gradient-to-r from-transparent to-indigo-400"></div><span class="text-xs font-bold text-indigo-400 uppercase tracking-[0.12em]">Projects</span><div class="h-px w-12 bg-gradient-to-l from-transparent to-indigo-400"></div></div><h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">Verification <span class="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">Projects</span></h2></div>
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-7">
 <div class="tilt rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-indigo-500/20 transition-all duration-500 overflow-hidden" data-3d data-rx="30" data-ry="-12" data-ty="90" data-s="0.78">
-<div class="tilt-in">
-<div class="proj-vis h-44 relative">
-<svg viewBox="0 0 400 180" class="w-full h-full" style="padding:20px">
-<text x="200" y="18" text-anchor="middle" fill="#818cf8" font-size="11" font-family="monospace" opacity="0.6">Ethernet MAC Frame Structure</text>
-<rect x="20" y="35" width="360" height="130" rx="6" fill="none" stroke="#818cf8" stroke-width="0.5" opacity="0.3"/>
-<rect x="30" y="40" width="70" height="20" rx="3" fill="#818cf8" opacity="0.15"/><text x="65" y="54" text-anchor="middle" fill="#818cf8" font-size="8" font-family="monospace">Preamble</text>
-<rect x="110" y="40" width="50" height="20" rx="3" fill="#6366f1" opacity="0.15"/><text x="135" y="54" text-anchor="middle" fill="#6366f1" font-size="8" font-family="monospace">DA</text>
-<rect x="170" y="40" width="60" height="20" rx="3" fill="#a78bfa" opacity="0.15"/><text x="200" y="54" text-anchor="middle" fill="#a78bfa" font-size="8" font-family="monospace">SA</text>
-<rect x="240" y="40" width="60" height="20" rx="3" fill="#c084fc" opacity="0.15"/><text x="270" y="54" text-anchor="middle" fill="#c084fc" font-size="8" font-family="monospace">Type</text>
-<rect x="310" y="40" width="60" height="20" rx="3" fill="#f472b6" opacity="0.15"/><text x="340" y="54" text-anchor="middle" fill="#f472b6" font-size="8" font-family="monospace">Data</text>
-<rect x="30" y="70" width="100" height="20" rx="3" fill="#818cf8" opacity="0.1"/><text x="80" y="84" text-anchor="middle" fill="#818cf8" font-size="7" font-family="monospace">FCS (CRC-32)</text>
-<rect x="140" y="70" width="60" height="20" rx="3" fill="#22d3ee" opacity="0.1"/><text x="170" y="84" text-anchor="middle" fill="#22d3ee" font-size="7" font-family="monospace">APB IF</text>
-<line x1="200" y1="110" x2="380" y2="110" stroke="#818cf8" stroke-width="0.5" opacity="0.2" stroke-dasharray="3,3"/>
-<text x="290" y="125" text-anchor="middle" fill="#475569" font-size="7" font-family="monospace">UVM Verification Environment</text>
-<circle cx="40" cy="135" r="4" fill="#818cf8" opacity="0.4"/><line x1="44" y1="135" x2="70" y2="135" stroke="#818cf8" stroke-width="0.8" opacity="0.3"/>
-<circle cx="90" cy="135" r="4" fill="#6366f1" opacity="0.4"/><line x1="94" y1="135" x2="120" y2="135" stroke="#6366f1" stroke-width="0.8" opacity="0.3"/>
-<circle cx="140" cy="135" r="4" fill="#a78bfa" opacity="0.4"/><line x1="144" y1="135" x2="170" y2="135" stroke="#a78bfa" stroke-width="0.8" opacity="0.3"/>
-<circle cx="190" cy="135" r="4" fill="#c084fc" opacity="0.4"/><line x1="194" y1="135" x2="220" y2="135" stroke="#c084fc" stroke-width="0.8" opacity="0.3"/>
-<text x="50" y="150" fill="#475569" font-size="6" font-family="monospace">DRV</text><text x="100" y="150" fill="#475569" font-size="6" font-family="monospace">MON</text><text x="150" y="150" fill="#475569" font-size="6" font-family="monospace">SB</text><text x="200" y="150" fill="#475569" font-size="6" font-family="monospace">COV</text>
-</svg>
-<div class="absolute top-3 left-3 px-2.5 py-1 bg-indigo-500/15 backdrop-blur-sm border border-indigo-500/25 rounded-lg text-xs font-bold text-indigo-300">UVM · Questasim</div>
-</div>
-<div class="p-5">
-<h3 class="text-lg font-bold mb-2 text-white">APB Based Ethernet Protocol Verification</h3>
-<ul class="space-y-1.5 mb-4">
-<li class="flex gap-2 text-sm text-gray-200"><span class="iconify text-indigo-400 mt-0.5 shrink-0 text-xs" data-icon="mdi:chevron-right"></span>Full UVM env: sequencer, driver, monitor, scoreboard, coverage</li>
-<li class="flex gap-2 text-sm text-gray-200"><span class="iconify text-indigo-400 mt-0.5 shrink-0 text-xs" data-icon="mdi:chevron-right"></span>Constrained random tests for Ethernet MAC verification</li>
-<li class="flex gap-2 text-sm text-gray-200"><span class="iconify text-indigo-400 mt-0.5 shrink-0 text-xs" data-icon="mdi:chevron-right"></span>SVA formal verification &amp; coverage closure via regression</li>
-<li class="flex gap-2 text-sm text-gray-200"><span class="iconify text-indigo-400 mt-0.5 shrink-0 text-xs" data-icon="mdi:chevron-right"></span>Code &amp; functional coverage analysis</li>
-</ul>
-<div class="flex flex-wrap gap-1.5"><span class="px-2.5 py-1 bg-indigo-500/10 border border-indigo-500/15 rounded text-xs text-indigo-300 font-medium">SystemVerilog</span><span class="px-2.5 py-1 bg-indigo-500/10 border border-indigo-500/15 rounded text-xs text-indigo-300 font-medium">UVM</span><span class="px-2.5 py-1 bg-indigo-500/10 border border-indigo-500/15 rounded text-xs text-indigo-300 font-medium">SVA</span><span class="px-2.5 py-1 bg-indigo-500/10 border border-indigo-500/15 rounded text-xs text-indigo-300 font-medium">APB</span></div>
-</div></div></div>
-
+<div class="tilt-in"><div class="proj-vis h-44 relative"><svg viewBox="0 0 400 180" class="w-full h-full" style="padding:20px"><text x="200" y="18" text-anchor="middle" fill="#818cf8" font-size="11" font-family="monospace" opacity="0.6">Ethernet MAC Frame Structure</text><rect x="20" y="35" width="360" height="130" rx="6" fill="none" stroke="#818cf8" stroke-width="0.5" opacity="0.3"/><rect x="30" y="40" width="70" height="20" rx="3" fill="#818cf8" opacity="0.15"/><text x="65" y="54" text-anchor="middle" fill="#818cf8" font-size="8" font-family="monospace">Preamble</text><rect x="110" y="40" width="50" height="20" rx="3" fill="#6366f1" opacity="0.15"/><text x="135" y="54" text-anchor="middle" fill="#6366f1" font-size="8" font-family="monospace">DA</text><rect x="170" y="40" width="60" height="20" rx="3" fill="#a78bfa" opacity="0.15"/><text x="200" y="54" text-anchor="middle" fill="#a78bfa" font-size="8" font-family="monospace">SA</text><rect x="240" y="40" width="60" height="20" rx="3" fill="#c084fc" opacity="0.15"/><text x="270" y="54" text-anchor="middle" fill="#c084fc" font-size="8" font-family="monospace">Type</text><rect x="310" y="40" width="60" height="20" rx="3" fill="#f472b6" opacity="0.15"/><text x="340" y="54" text-anchor="middle" fill="#f472b6" font-size="8" font-family="monospace">Data</text><rect x="30" y="70" width="100" height="20" rx="3" fill="#818cf8" opacity="0.1"/><text x="80" y="84" text-anchor="middle" fill="#818cf8" font-size="7" font-family="monospace">FCS (CRC-32)</text><rect x="140" y="70" width="60" height="20" rx="3" fill="#22d3ee" opacity="0.1"/><text x="170" y="84" text-anchor="middle" fill="#22d3ee" font-size="7" font-family="monospace">APB IF</text><line x1="200" y1="110" x2="380" y2="110" stroke="#818cf8" stroke-width="0.5" opacity="0.2" stroke-dasharray="3,3"/><text x="290" y="125" text-anchor="middle" fill="#475569" font-size="7" font-family="monospace">UVM Verification Environment</text><circle cx="40" cy="135" r="4" fill="#818cf8" opacity="0.4"/><line x1="44" y1="135" x2="70" y2="135" stroke="#818cf8" stroke-width="0.8" opacity="0.3"/><circle cx="90" cy="135" r="4" fill="#6366f1" opacity="0.4"/><line x1="94" y1="135" x2="120" y2="135" stroke="#6366f1" stroke-width="0.8" opacity="0.3"/><circle cx="140" cy="135" r="4" fill="#a78bfa" opacity="0.4"/><line x1="144" y1="135" x2="170" y2="135" stroke="#a78bfa" stroke-width="0.8" opacity="0.3"/><circle cx="190" cy="135" r="4" fill="#c084fc" opacity="0.4"/><line x1="194" y1="135" x2="220" y2="135" stroke="#c084fc" stroke-width="0.8" opacity="0.3"/><text x="50" y="150" fill="#475569" font-size="6" font-family="monospace">DRV</text><text x="100" y="150" fill="#475569" font-size="6" font-family="monospace">MON</text><text x="150" y="150" fill="#475569" font-size="6" font-family="monospace">SB</text><text x="200" y="150" fill="#475569" font-size="6" font-family="monospace">COV</text></svg><div class="absolute top-3 left-3 px-2.5 py-1 bg-indigo-500/15 backdrop-blur-sm border border-indigo-500/25 rounded-lg text-xs font-bold text-indigo-300">UVM · Questasim</div></div><div class="p-5"><h3 class="text-lg font-bold mb-2 text-white">APB Based Ethernet Protocol Verification</h3><ul class="space-y-1.5 mb-4"><li class="flex gap-2 text-sm text-gray-200"><span class="iconify text-indigo-400 mt-0.5 shrink-0 text-xs" data-icon="mdi:chevron-right"></span>Full UVM env: sequencer, driver, monitor, scoreboard, coverage</li><li class="flex gap-2 text-sm text-gray-200"><span class="iconify text-indigo-400 mt-0.5 shrink-0 text-xs" data-icon="mdi:chevron-right"></span>Constrained random tests for Ethernet MAC verification</li><li class="flex gap-2 text-sm text-gray-200"><span class="iconify text-indigo-400 mt-0.5 shrink-0 text-xs" data-icon="mdi:chevron-right"></span>SVA formal verification &amp; coverage closure via regression</li><li class="flex gap-2 text-sm text-gray-200"><span class="iconify text-indigo-400 mt-0.5 shrink-0 text-xs" data-icon="mdi:chevron-right"></span>Code &amp; functional coverage analysis</li></ul><div class="flex flex-wrap gap-1.5"><span class="px-2.5 py-1 bg-indigo-500/10 border border-indigo-500/15 rounded text-xs text-indigo-300 font-medium">SystemVerilog</span><span class="px-2.5 py-1 bg-indigo-500/10 border border-indigo-500/15 rounded text-xs text-indigo-300 font-medium">UVM</span><span class="px-2.5 py-1 bg-indigo-500/10 border border-indigo-500/15 rounded text-xs text-indigo-300 font-medium">SVA</span><span class="px-2.5 py-1 bg-indigo-500/10 border border-indigo-500/15 rounded text-xs text-indigo-300 font-medium">APB</span></div></div></div></div>
 <div class="tilt rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-purple-500/20 transition-all duration-500 overflow-hidden" data-3d data-rx="30" data-ry="12" data-ty="90" data-s="0.78" data-d="0.06">
-<div class="tilt-in">
-<div class="proj-vis h-44 relative">
-<svg viewBox="0 0 400 180" class="w-full h-full" style="padding:20px">
-<text x="200" y="18" text-anchor="middle" fill="#a78bfa" font-size="11" font-family="monospace" opacity="0.6">AMBA-APB Bus Architecture</text>
-<rect x="30" y="35" width="120" height="60" rx="6" fill="none" stroke="#a78bfa" stroke-width="0.8" opacity="0.4"/><text x="90" y="70" text-anchor="middle" fill="#a78bfa" font-size="9" font-family="monospace" font-weight="bold">MASTER</text>
-<line x1="150" y1="65" x2="250" y2="65" stroke="#6366f1" stroke-width="1.5" opacity="0.5"/>
-<text x="200" y="55" text-anchor="middle" fill="#6366f1" font-size="7" font-family="monospace">PADDR[7:2]</text>
-<text x="200" y="80" text-anchor="middle" fill="#6366f1" font-size="7" font-family="monospace">PWDATA[31:0]</text>
-<text x="200" y="95" text-anchor="middle" fill="#6366f1" font-size="7" font-family="monospace">PSEL</text>
-<text x="200" y="110" text-anchor="middle" fill="#6366f1" font-size="7" font-family="monospace">PENABLE</text>
-<text x="200" y="125" text-anchor="middle" fill="#22d3ee" font-size="7" font-family="monospace">PREADY</text>
-<rect x="270" y="35" width="100" height="60" rx="6" fill="none" stroke="#c084fc" stroke-width="0.8" opacity="0.4"/>
-<text x="320" y="60" text-anchor="middle" fill="#c084fc" font-size="9" font-family="monospace" font-weight="bold">SLAVE</text>
-<text x="320" y="75" text-anchor="middle" fill="#c084fc" font-size="7" font-family="monospace">PRDATA</text>
-<text x="320" y="88" text-anchor="middle" fill="#22d3ee" font-size="7" font-family="monospace">PSLVERR</text>
-<text x="200" y="155" text-anchor="middle" fill="#475569" font-size="7" font-family="monospace">SV &amp; UVM Comparative Verification</text>
-<rect x="40" y="140" width="50" height="14" rx="3" fill="#a78bfa" opacity="0.2"/><text x="65" y="150" text-anchor="middle" fill="#a78bfa" font-size="6" font-family="monospace">SV Env</text>
-<rect x="100" y="140" width="50" height="14" rx="3" fill="#c084fc" opacity="0.2"/><text x="125" y="150" text-anchor="middle" fill="#c084fc" font-size="6" font-family="monospace">UVM Env</text>
-<rect x="220" y="140" width="50" height="14" rx="3" fill="#f472b6" opacity="0.2"/><text x="245" y="150" text-anchor="middle" fill="#f472b6" font-size="6" font-family="monospace">SVA</text>
-</svg>
-<div class="absolute top-3 left-3 px-2.5 py-1 bg-purple-500/15 backdrop-blur-sm border border-purple-500/25 rounded-lg text-xs font-bold text-purple-300">SV &amp; UVM · Questasim</div>
-</div>
-<div class="p-5">
-<h3 class="text-lg font-bold mb-2 text-white">AMBA-APB Protocol Verification</h3>
-<ul class="space-y-1.5 mb-4">
-<li class="flex gap-2 text-sm text-gray-200"><span class="iconify text-purple-400 mt-0.5 shrink-0 text-xs" data-icon="mdi:chevron-right"></span>SV &amp; UVM environments for comparative analysis</li>
-<li class="flex gap-2 text-sm text-gray-200"><span class="iconify text-purple-400 mt-0.5 shrink-0 text-xs" data-icon="mdi:chevron-right"></span>Functional coverage &amp; SVA for protocol compliance</li>
-<li class="flex gap-2 text-sm text-gray-200"><span class="iconify text-purple-400 mt-0.5 shrink-0 text-xs" data-icon="mdi:chevron-right"></span>Master env testing slave via monitor mechanism</li>
-<li class="flex gap-2 text-sm text-gray-200"><span class="iconify text-purple-400 mt-0.5 shrink-0 text-xs" data-icon="mdi:chevron-right"></span>Coverage-driven verification closure</li>
-</ul>
-<div class="flex flex-wrap gap-1.5"><span class="px-2.5 py-1 bg-purple-500/10 border border-purple-500/15 rounded text-xs text-purple-300 font-medium">APB</span><span class="px-2.5 py-1 bg-purple-500/10 border border-purple-500/15 rounded text-xs text-purple-300 font-medium">SVA</span><span class="px-2.5 py-1 bg-purple-500/10 border border-purple-500/15 rounded text-xs text-purple-300 font-medium">Coverage</span></div>
-</div></div></div>
-
+<div class="tilt-in"><div class="proj-vis h-44 relative"><svg viewBox="0 0 400 180" class="w-full h-full" style="padding:20px"><text x="200" y="18" text-anchor="middle" fill="#a78bfa" font-size="11" font-family="monospace" opacity="0.6">AMBA-APB Bus Architecture</text><rect x="30" y="35" width="120" height="60" rx="6" fill="none" stroke="#a78bfa" stroke-width="0.8" opacity="0.4"/><text x="90" y="70" text-anchor="middle" fill="#a78bfa" font-size="9" font-family="monospace" font-weight="bold">MASTER</text><line x1="150" y1="65" x2="250" y2="65" stroke="#6366f1" stroke-width="1.5" opacity="0.5"/><text x="200" y="55" text-anchor="middle" fill="#6366f1" font-size="7" font-family="monospace">PADDR[7:2]</text><text x="200" y="80" text-anchor="middle" fill="#6366f1" font-size="7" font-family="monospace">PWDATA[31:0]</text><text x="200" y="95" text-anchor="middle" fill="#6366f1" font-size="7" font-family="monospace">PSEL</text><text x="200" y="110" text-anchor="middle" fill="#6366f1" font-size="7" font-family="monospace">PENABLE</text><text x="200" y="125" text-anchor="middle" fill="#22d3ee" font-size="7" font-family="monospace">PREADY</text><rect x="270" y="35" width="100" height="60" rx="6" fill="none" stroke="#c084fc" stroke-width="0.8" opacity="0.4"/><text x="320" y="60" text-anchor="middle" fill="#c084fc" font-size="9" font-family="monospace" font-weight="bold">SLAVE</text><text x="320" y="75" text-anchor="middle" fill="#c084fc" font-size="7" font-family="monospace">PRDATA</text><text x="320" y="88" text-anchor="middle" fill="#22d3ee" font-size="7" font-family="monospace">PSLVERR</text><text x="200" y="155" text-anchor="middle" fill="#475569" font-size="7" font-family="monospace">SV &amp; UVM Comparative Verification</text><rect x="40" y="140" width="50" height="14" rx="3" fill="#a78bfa" opacity="0.2"/><text x="65" y="150" text-anchor="middle" fill="#a78bfa" font-size="6" font-family="monospace">SV Env</text><rect x="100" y="140" width="50" height="14" rx="3" fill="#c084fc" opacity="0.2"/><text x="125" y="150" text-anchor="middle" fill="#c084fc" font-size="6" font-family="monospace">UVM Env</text><rect x="220" y="140" width="50" height="14" rx="3" fill="#f472b6" opacity="0.2"/><text x="245" y="150" text-anchor="middle" fill="#f472b6" font-size="6" font-family="monospace">SVA</text></svg><div class="absolute top-3 left-3 px-2.5 py-1 bg-purple-500/15 backdrop-blur-sm border border-purple-500/25 rounded-lg text-xs font-bold text-purple-300">SV &amp; UVM · Questasim</div></div><div class="p-5"><h3 class="text-lg font-bold mb-2 text-white">AMBA-APB Protocol Verification</h3><ul class="space-y-1.5 mb-4"><li class="flex gap-2 text-sm text-gray-200"><span class="iconify text-purple-400 mt-0.5 shrink-0 text-xs" data-icon="mdi:chevron-right"></span>SV &amp; UVM environments for comparative analysis</li><li class="flex gap-2 text-sm text-gray-200"><span class="iconify text-purple-400 mt-0.5 shrink-0 text-xs" data-icon="mdi:chevron-right"></span>Functional coverage &amp; SVA for protocol compliance</li><li class="flex gap-2 text-sm text-gray-200"><span class="iconify text-purple-400 mt-0.5 shrink-0 text-xs" data-icon="mdi:chevron-right"></span>Master env testing slave via monitor mechanism</li><li class="flex gap-2 text-sm text-gray-200"><span class="iconify text-purple-400 mt-0.5 shrink-0 text-xs" data-icon="mdi:chevron-right"></span>Coverage-driven verification closure</li></ul><div class="flex flex-wrap gap-1.5"><span class="px-2.5 py-1 bg-purple-500/10 border border-purple-500/15 rounded text-xs text-purple-300 font-medium">APB</span><span class="px-2.5 py-1 bg-purple-500/10 border border-purple-500/15 rounded text-xs text-purple-300 font-medium">SVA</span><span class="px-2.5 py-1 bg-purple-500/10 border border-purple-500/15 rounded text-xs text-purple-300 font-medium">Coverage</span></div></div></div></div>
 <div class="tilt rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-cyan-500/20 transition-all duration-500 overflow-hidden" data-3d data-rx="30" data-ry="-12" data-ty="90" data-s="0.78" data-d="0.12">
-<div class="tilt-in">
-<div class="proj-vis h-44 relative">
-<svg viewBox="0 0 400 180" class="w-full h-full p-5">
-<text x="200" y="18" text-anchor="middle" fill="#22d3ee" font-size="11" font-family="monospace" opacity="0.6">Single Port RAM — UVM Verification</text>
-<rect x="40" y="30" width="320" height="100" rx="4" fill="none" stroke="#22d3ee" stroke-width="1" opacity="0.3"/>
-<text x="200" y="85" text-anchor="middle" fill="#22d3ee" font-size="9" font-family="monospace" opacity="0.5">MEMORY ARRAY [1024 x 8]</text>
-<rect x="60" y="38" width="30" height="12" rx="2" fill="#22d3ee" opacity="0.15"/><rect x="96" y="38" width="30" height="12" rx="2" fill="#22d3ee" opacity="0.12"/><rect x="132" y="38" width="30" height="12" rx="2" fill="#22d3ee" opacity="0.09"/><rect x="168" y="38" width="30" height="12" rx="2" fill="#22d3ee" opacity="0.06"/>
-<rect x="60" y="56" width="30" height="12" rx="2" fill="#22d3ee" opacity="0.15"/><rect x="96" y="56" width="30" height="12" rx="2" fill="#22d3ee" opacity="0.12"/><rect x="132" y="56" width="30" height="12" rx="2" fill="#22d3ee" opacity="0.09"/><rect x="168" y="56" width="30" height="12" rx="2" fill="#22d3ee" opacity="0.06"/>
-<text x="200" y="155" text-anchor="middle" fill="#475569" font-size="8" font-family="monospace">UVM: Driver → Monitor → Scoreboard → Coverage</text>
-<circle cx="40" cy="150" r="4" fill="#22d3ee" opacity="0.4"/><line x1="44" y1="150" x2="80" y2="150" stroke="#22d3ee" stroke-width="0.8" opacity="0.3"/>
-<circle cx="90" cy="150" r="4" fill="#6366f1" opacity="0.4"/><line x1="94" y1="150" x2="130" y2="150" stroke="#6366f1" stroke-width="0.8" opacity="0.3"/>
-<circle cx="140" cy="150" r="4" fill="#a78bfa" opacity="0.4"/><line x1="144" y1="150" x2="180" y2="150" stroke="#a78bfa" stroke-width="0.8" opacity="0.3"/>
-<circle cx="190" cy="150" r="4" fill="#c084fc" opacity="0.4"/>
-<text x="40" y="170" fill="#475569" font-size="6" font-family="monospace">DRV</text><text x="90" y="170" fill="#475569" font-size="6" font-family="monospace">MON</text><text x="140" y="170" fill="#475569" font-size="6" font-family="monospace">SB</text><text x="190" y="170" fill="#475569" font-size="6" font-family="monospace">COV</text>
-</svg>
-<div class="absolute top-3 left-3 px-2 py-1 bg-cyan-500/15 backdrop-blur-sm border border-cyan-500/25 rounded-lg text-xs font-bold text-cyan-300">UVM · Questasim</div>
-</div>
-<div class="p-5">
-<h3 class="text-lg font-bold mb-2 text-white">Single Port RAM Verification</h3>
-<ul class="space-y-1.5 mb-4">
-<li class="flex gap-2 text-sm text-gray-200"><span class="iconify text-cyan-400 mt-0.5 shrink-0 text-xs" data-icon="mdi:chevron-right"></span>UVM-based verification for 1024×8 SRAM</li>
-<li class="flex gap-2 text-sm text-gray-200"><span class="iconify text-cyan-400 mt-0.5 shrink-0 text-xs" data-icon="mdi:chevron-right"></span>CRV-driven read/write sequences with collision testing</li>
-<li class="flex gap-2 text-sm text-gray-200"><span class="iconify text-cyan-400 mt-0.5 shrink-0 text-xs" data-icon="mdi:chevron-right"></span>Scoreboard auto-check &amp; coverage closure</li>
-</ul>
-<div class="flex flex-wrap gap-1.5"><span class="px-2.5 py-1 bg-cyan-500/10 border border-cyan-500/15 rounded text-xs text-cyan-300 font-medium">UVM</span><span class="px-2.5 py-1 bg-cyan-500/10 border border-cyan-500/15 rounded text-xs text-cyan-300 font-medium">CRV</span><span class="px-2.5 py-1 bg-cyan-500/10 border border-cyan-500/15 rounded text-xs text-cyan-300 font-medium">SVA</span></div>
-</div></div></div>
-
+<div class="tilt-in"><div class="proj-vis h-44 relative"><svg viewBox="0 0 400 180" class="w-full h-full p-5"><text x="200" y="18" text-anchor="middle" fill="#22d3ee" font-size="11" font-family="monospace" opacity="0.6">Single Port RAM — UVM Verification</text><rect x="40" y="30" width="320" height="100" rx="4" fill="none" stroke="#22d3ee" stroke-width="1" opacity="0.3"/><text x="200" y="85" text-anchor="middle" fill="#22d3ee" font-size="9" font-family="monospace" opacity="0.5">MEMORY ARRAY [1024 x 8]</text><rect x="60" y="38" width="30" height="12" rx="2" fill="#22d3ee" opacity="0.15"/><rect x="96" y="38" width="30" height="12" rx="2" fill="#22d3ee" opacity="0.12"/><rect x="132" y="38" width="30" height="12" rx="2" fill="#22d3ee" opacity="0.09"/><rect x="168" y="38" width="30" height="12" rx="2" fill="#22d3ee" opacity="0.06"/><rect x="60" y="56" width="30" height="12" rx="2" fill="#22d3ee" opacity="0.15"/><rect x="96" y="56" width="30" height="12" rx="2" fill="#22d3ee" opacity="0.12"/><rect x="132" y="56" width="30" height="12" rx="2" fill="#22d3ee" opacity="0.09"/><rect x="168" y="56" width="30" height="12" rx="2" fill="#22d3ee" opacity="0.06"/><text x="200" y="155" text-anchor="middle" fill="#475569" font-size="8" font-family="monospace">UVM: Driver → Monitor → Scoreboard → Coverage</text><circle cx="40" cy="150" r="4" fill="#22d3ee" opacity="0.4"/><line x1="44" y1="150" x2="80" y2="150" stroke="#22d3ee" stroke-width="0.8" opacity="0.3"/><circle cx="90" cy="150" r="4" fill="#6366f1" opacity="0.4"/><line x1="94" y1="150" x2="130" y2="150" stroke="#6366f1" stroke-width="0.8" opacity="0.3"/><circle cx="140" cy="150" r="4" fill="#a78bfa" opacity="0.4"/><line x1="144" y1="150" x2="180" y2="150" stroke="#a78bfa" stroke-width="0.8" opacity="0.3"/><circle cx="190" cy="150" r="4" fill="#c084fc" opacity="0.4"/><text x="40" y="170" fill="#475569" font-size="6" font-family="monospace">DRV</text><text x="90" y="170" fill="#475569" font-size="6" font-family="monospace">MON</text><text x="140" y="170" fill="#475569" font-size="6" font-family="monospace">SB</text><text x="190" y="170" fill="#475569" font-size="6" font-family="monospace">COV</text></svg><div class="absolute top-3 left-3 px-2 py-1 bg-cyan-500/15 backdrop-blur-sm border border-cyan-500/25 rounded-lg text-xs font-bold text-cyan-300">UVM · Questasim</div></div><div class="p-5"><h3 class="text-lg font-bold mb-2 text-white">Single Port RAM Verification</h3><ul class="space-y-1.5 mb-4"><li class="flex gap-2 text-sm text-gray-200"><span class="iconify text-cyan-400 mt-0.5 shrink-0 text-xs" data-icon="mdi:chevron-right"></span>UVM-based verification for 1024×8 SRAM</li><li class="flex gap-2 text-sm text-gray-200"><span class="iconify text-cyan-400 mt-0.5 shrink-0 text-xs" data-icon="mdi:chevron-right"></span>CRV-driven read/write sequences with collision testing</li><li class="flex gap-2 text-sm text-gray-200"><span class="iconify text-cyan-400 mt-0.5 shrink-0 text-xs" data-icon="mdi:chevron-right"></span>Scoreboard auto-check &amp; coverage closure</li></ul><div class="flex flex-wrap gap-1.5"><span class="px-2.5 py-1 bg-cyan-500/10 border border-cyan-500/15 rounded text-xs text-cyan-300 font-medium">UVM</span><span class="px-2.5 py-1 bg-cyan-500/10 border border-cyan-500/15 rounded text-xs text-cyan-300 font-medium">CRV</span><span class="px-2.5 py-1 bg-cyan-500/10 border border-cyan-500/15 rounded text-xs text-cyan-300 font-medium">SVA</span></div></div></div></div>
 <div class="tilt rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-amber-500/20 transition-all duration-500 overflow-hidden" data-3d data-rx="30" data-ry="12" data-ty="90" data-s="0.78" data-d="0.18">
-<div class="tilt-in">
-<div class="proj-vis h-44 relative">
-<svg viewBox="0 0 400 180" class="w-full h-full p-5">
-<text x="200" y="18" text-anchor="middle" fill="#fbbf24" font-size="11" font-family="monospace" opacity="0.6">Up-Down Counter — Directed TB</text>
-<rect x="40" y="35" width="120" height="35" rx="6" fill="none" stroke="#fbbf24" stroke-width="0.8" opacity="0.3"/>
-<text x="100" y="58" text-anchor="middle" fill="#fbbf24" font-size="18" font-family="monospace" font-weight="bold">0110</text>
-<text x="100" y="78" text-anchor="middle" fill="#ef4444" font-size="8" font-family="monospace">↑ COUNT UP</text>
-<rect x="200" y="35" width="120" height="35" rx="6" fill="none" stroke="#fbbf24" stroke-width="0.8" opacity="0.3"/>
-<text x="260" y="58" text-anchor="middle" fill="#fbbf24" font-size="18" font-family="monospace" font-weight="bold">1001</text>
-<text x="260" y="78" text-anchor="middle" fill="#22d3ee" font-size="8" font-family="monospace">↓ COUNT DOWN</text>
-<rect x="120" y="95" width="160" height="35" rx="6" fill="none" stroke="#fbbf24" stroke-width="0.8" opacity="0.3"/>
-<text x="200" y="118" text-anchor="middle" fill="#fbbf24" font-size="14" font-family="monospace" font-weight="bold">END_COUNT</text>
-<text x="200" y="155" text-anchor="middle" fill="#475569" font-size="8" font-family="monospace">Configurable start/stop with boundary checks</text>
-</svg>
-</div>
-<div class="p-5">
-<div class="flex items-center gap-3 mb-3">
-<div class="w-10 h-10 rounded-xl bg-amber-500/12 flex items-center justify-center"><span class="iconify text-xl text-amber-400" data-icon="mdi:counter"></span></div>
-<div><h3 class="text-lg font-bold text-white">Up-Down Counter</h3><span class="px-2 py-0.5 bg-amber-500/10 rounded text-[10px] text-amber-300 font-bold">Directed TB</span></div>
-</div>
-<ul class="space-y-1.5 mb-4">
-<li class="flex gap-2 text-sm text-gray-200"><span class="iconify text-amber-400 mt-0.5 shrink-0 text-xs" data-icon="mdi:chevron-right"></span>Configurable counter with start/stop &amp; end-of-count flag</li>
-<li class="flex gap-2 text-sm text-gray-200"><span class="iconify text-amber-400 mt-0.5 shrink-0 text-xs" data-icon="mdi:chevron-right"></span>RTL design with detailed design plan</li>
-<li class="flex gap-2 text-sm text-gray-200"><span class="iconify text-amber-400 mt-0.5 shrink-0 text-xs" data-icon="mdi:chevron-right"></span>Directed testbench for edge/boundary conditions</li>
-</ul>
-<div class="flex flex-wrap gap-1.5"><span class="px-2.5 py-1 bg-amber-500/10 border border-amber-500/15 rounded text-xs text-amber-300 font-medium">Verilog</span><span class="px-2.5 py-1 bg-amber-500/10 border border-amber-500/15 rounded text-xs text-amber-300 font-medium">Testbench</span></div>
-</div></div></div>
+<div class="tilt-in"><div class="proj-vis h-44 relative"><svg viewBox="0 0 400 180" class="w-full h-full p-5"><text x="200" y="18" text-anchor="middle" fill="#fbbf24" font-size="11" font-family="monospace" opacity="0.6">Up-Down Counter — Directed TB</text><rect x="40" y="35" width="120" height="35" rx="6" fill="none" stroke="#fbbf24" stroke-width="0.8" opacity="0.3"/><text x="100" y="58" text-anchor="middle" fill="#fbbf24" font-size="18" font-family="monospace" font-weight="bold">0110</text><text x="100" y="78" text-anchor="middle" fill="#ef4444" font-size="8" font-family="monospace">↑ COUNT UP</text><rect x="200" y="35" width="120" height="35" rx="6" fill="none" stroke="#fbbf24" stroke-width="0.8" opacity="0.3"/><text x="260" y="58" text-anchor="middle" fill="#fbbf24" font-size="18" font-family="monospace" font-weight="bold">1001</text><text x="260" y="78" text-anchor="middle" fill="#22d3ee" font-size="8" font-family="monospace">↓ COUNT DOWN</text><rect x="120" y="95" width="160" height="35" rx="6" fill="none" stroke="#fbbf24" stroke-width="0.8" opacity="0.3"/><text x="200" y="118" text-anchor="middle" fill="#fbbf24" font-size="14" font-family="monospace" font-weight="bold">END_COUNT</text><text x="200" y="155" text-anchor="middle" fill="#475569" font-size="8" font-family="monospace">Configurable start/stop with boundary checks</text></svg></div><div class="p-5"><div class="flex items-center gap-3 mb-3"><div class="w-10 h-10 rounded-xl bg-amber-500/12 flex items-center justify-center"><span class="iconify text-xl text-amber-400" data-icon="mdi:counter"></span></div><div><h3 class="text-lg font-bold text-white">Up-Down Counter</h3><span class="px-2 py-0.5 bg-amber-500/10 rounded text-[10px] text-amber-300 font-bold">Directed TB</span></div></div><ul class="space-y-1.5 mb-4"><li class="flex gap-2 text-sm text-gray-200"><span class="iconify text-amber-400 mt-0.5 shrink-0 text-xs" data-icon="mdi:chevron-right"></span>Configurable counter with start/stop &amp; end-of-count flag</li><li class="flex gap-2 text-sm text-gray-200"><span class="iconify text-amber-400 mt-0.5 shrink-0 text-xs" data-icon="mdi:chevron-right"></span>RTL design with detailed design plan</li><li class="flex gap-2 text-sm text-gray-200"><span class="iconify text-amber-400 mt-0.5 shrink-0 text-xs" data-icon="mdi:chevron-right"></span>Directed testbench for edge/boundary conditions</li></ul><div class="flex flex-wrap gap-1.5"><span class="px-2.5 py-1 bg-amber-500/10 border border-amber-500/15 rounded text-xs text-amber-300 font-medium">Verilog</span><span class="px-2.5 py-1 bg-amber-500/10 border border-amber-500/15 rounded text-xs text-amber-300 font-medium">Testbench</span></div></div></div></div>
 </div>
 </div>
 </section>
@@ -410,20 +306,8 @@
 <div class="max-w-7xl mx-auto px-6">
 <div class="text-center mb-14" data-3d data-rx="22" data-ty="65" data-s="0.87"><div class="flex items-center justify-center gap-3 mb-4"><div class="h-px w-12 bg-gradient-to-r from-transparent to-indigo-400"></div><span class="text-xs font-bold text-indigo-400 uppercase tracking-[0.12em]">Academic</span><div class="h-px w-12 bg-gradient-to-l from-transparent to-indigo-400"></div></div><h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white"><span class="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">Education &amp; Certifications</span></h2></div>
 <div class="max-w-3xl mx-auto space-y-5">
-<div class="rounded-2xl bg-white/[0.03] border border-white/[0.06] overflow-hidden" data-3d data-rx="22" data-ty="80" data-s="0.82">
-<div class="p-6 flex flex-col sm:flex-row items-start gap-5">
-<div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center shrink-0 shadow-lg shadow-indigo-500/20"><span class="iconify text-2xl text-white" data-icon="mdi:school"></span></div>
-<div class="flex-1">
-<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-1"><h3 class="text-lg font-bold text-white">B.Tech — ECE</h3><span class="px-3 py-1 bg-indigo-500/10 border border-indigo-500/15 rounded-full text-xs font-bold text-indigo-300 whitespace-nowrap">2021 — 2025</span></div>
-<p class="text-indigo-400 font-medium text-sm mb-1">PSCMR College of Engineering and Technology, JNTUK</p>
-<p class="text-gray-400 text-sm">Vijayawada, AP · <strong class="text-white">CGPA: 7.39</strong></p>
-</div></div></div>
-<div class="rounded-2xl bg-white/[0.03] border border-white/[0.06] p-6" data-3d data-rx="18" data-ty="60" data-s="0.85" data-d="0.05">
-<div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-xl bg-purple-500/12 flex items-center justify-center"><span class="iconify text-lg text-purple-400" data-icon="mdi:certificate"></span></div><h3 class="text-base font-bold text-white">Certifications</h3></div>
-<ul class="space-y-2">
-<li class="flex items-start gap-3 text-sm text-gray-200"><span class="iconify text-indigo-400 mt-0.5 shrink-0" data-icon="mdi:check-decagram"></span>RTL &amp; Design Verification — Moschip Academy of Silicon Systems &amp; Technologies Pvt. Ltd.</li>
-<li class="flex items-start gap-3 text-sm text-gray-200"><span class="iconify text-purple-400 mt-0.5 shrink-0" data-icon="mdi:check-decagram"></span>Advanced Internet of Things (IoT) — Purple Technologies</li>
-</ul></div>
+<div class="rounded-2xl bg-white/[0.03] border border-white/[0.06] overflow-hidden" data-3d data-rx="22" data-ty="80" data-s="0.82"><div class="p-6 flex flex-col sm:flex-row items-start gap-5"><div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center shrink-0 shadow-lg shadow-indigo-500/20"><span class="iconify text-2xl text-white" data-icon="mdi:school"></span></div><div class="flex-1"><div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-1"><h3 class="text-lg font-bold text-white">B.Tech — ECE</h3><span class="px-3 py-1 bg-indigo-500/10 border border-indigo-500/15 rounded-full text-xs font-bold text-indigo-300 whitespace-nowrap">2021 — 2025</span></div><p class="text-indigo-400 font-medium text-sm mb-1">PSCMR College of Engineering and Technology, JNTUK</p><p class="text-gray-400 text-sm">Vijayawada, AP · <strong class="text-white">CGPA: 7.39</strong></p></div></div></div>
+<div class="rounded-2xl bg-white/[0.03] border border-white/[0.06] p-6" data-3d data-rx="18" data-ty="60" data-s="0.85" data-d="0.05"><div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-xl bg-purple-500/12 flex items-center justify-center"><span class="iconify text-lg text-purple-400" data-icon="mdi:certificate"></span></div><h3 class="text-base font-bold text-white">Certifications</h3></div><ul class="space-y-2"><li class="flex items-start gap-3 text-sm text-gray-200"><span class="iconify text-indigo-400 mt-0.5 shrink-0" data-icon="mdi:check-decagram"></span>RTL &amp; Design Verification — Moschip Academy of Silicon Systems &amp; Technologies Pvt. Ltd.</li><li class="flex items-start gap-3 text-sm text-gray-200"><span class="iconify text-purple-400 mt-0.5 shrink-0" data-icon="mdi:check-decagram"></span>Advanced Internet of Things (IoT) — Purple Technologies</li></ul></div>
 </div></div>
 </section>
 
@@ -432,11 +316,7 @@
 <section id="contact" class="relative py-32 overflow-hidden" style="z-index:50;background:#0a0d18">
 <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse at 50% 30%,rgba(99,102,241,.06) 0%,transparent 60%)"></div>
 <div class="max-w-5xl mx-auto px-6 relative" style="z-index:60">
-<div class="text-center mb-14">
-<div class="flex items-center justify-center gap-3 mb-4"><div class="h-px w-12 bg-gradient-to-r from-transparent to-indigo-400"></div><span class="text-xs font-bold text-indigo-400 uppercase tracking-[0.12em]">Let's Connect</span><div class="h-px w-12 bg-gradient-to-l from-transparent to-indigo-400"></div></div>
-<h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-3">Get in <span class="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">Touch</span></h2>
-<p class="text-gray-300 max-w-md mx-auto text-sm">Interested in my verification skills? Let's discuss ASIC DV opportunities.</p>
-</div>
+<div class="text-center mb-14"><div class="flex items-center justify-center gap-3 mb-4"><div class="h-px w-12 bg-gradient-to-r from-transparent to-indigo-400"></div><span class="text-xs font-bold text-indigo-400 uppercase tracking-[0.12em]">Let's Connect</span><div class="h-px w-12 bg-gradient-to-l from-transparent to-indigo-400"></div></div><h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-3">Get in <span class="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">Touch</span></h2><p class="text-gray-300 max-w-md mx-auto text-sm">Interested in my verification skills? Let's discuss ASIC DV opportunities.</p></div>
 <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
 <div class="lg:col-span-2 space-y-3">
 <a href="mailto:k.hemanth2027@gmail.com" class="flex items-center gap-4 p-4 rounded-xl bg-white/[0.05] border border-white/[0.08] hover:border-indigo-500/25 transition-all group"><div class="w-11 h-11 rounded-xl bg-indigo-500/12 flex items-center justify-center group-hover:bg-indigo-500/20 transition-colors shrink-0"><span class="iconify text-xl text-indigo-400" data-icon="mdi:email-outline"></span></div><div><div class="text-[10px] text-gray-500 uppercase tracking-wider font-bold">Email</div><div class="text-sm text-white font-medium break-all">k.hemanth2027@gmail.com</div></div></a>
@@ -469,8 +349,7 @@
 <script type="module">
 import*as THREE from'three';
 const IS_MOB=/Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(navigator.userAgent)||innerWidth<768;
-const PXR=IS_MOB?1.5:Math.min(devicePixelRatio,2);
-const P_N=IS_MOB?80:300;const F_N=IS_MOB?6:18;const R_SEG=IS_MOB?32:128;const L_N=IS_MOB?0:P_N;const TK_SEG=IS_MOB?64:200;
+const PXR=IS_MOB?1.5:Math.min(devicePixelRatio,2);const P_N=IS_MOB?80:300;const F_N=IS_MOB?6:18;const R_SEG=IS_MOB?32:128;const L_N=IS_MOB?0:P_N;const TK_SEG=IS_MOB?64:200;
 const canvas=document.getElementById('bg3d');
 const R=new THREE.WebGLRenderer({canvas,antialias:!IS_MOB,alpha:true,powerPreference:IS_MOB?'low-power':'high-performance'});
 R.setSize(innerWidth,innerHeight);R.setPixelRatio(PXR);
@@ -496,30 +375,24 @@ let comp=null;let sP=0,tSP=0,mx=0,my=0,tmx=0,tmy=0;let firstFrame=true;
 addEventListener('scroll',()=>{const m=document.body.scrollHeight-innerHeight;tSP=m>0?scrollY/m:0},{passive:true});
 if(!IS_MOB){addEventListener('mousemove',e=>{tmx=(e.clientX/innerWidth-.5)*2;tmy=(e.clientY/innerHeight-.5)*2},{passive:true})}
 addEventListener('resize',()=>{cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();R.setSize(innerWidth,innerHeight);if(comp)comp.setSize(innerWidth,innerHeight)});
-function anim(){requestAnimationFrame(anim);const t=performance.now()*.001;sP+=(tSP-sP)*.04;
-if(!IS_MOB){mx+=(tmx-mx)*.04;my+=(tmy-my)*.04}
-const ca=sP*Math.PI*1.8;const cd=38-sP*12;
-cam.position.x=Math.sin(ca)*cd+(IS_MOB?0:mx*5);cam.position.z=Math.cos(ca)*cd;cam.position.y=2-sP*8-(IS_MOB?0:my*3);cam.lookAt(0,-sP*3,0);
+function anim(){requestAnimationFrame(anim);const t=performance.now()*.001;sP+=(tSP-sP)*.04;if(!IS_MOB){mx+=(tmx-mx)*.04;my+=(tmy-my)*.04}
+const ca=sP*Math.PI*1.8;const cd=38-sP*12;cam.position.x=Math.sin(ca)*cd+(IS_MOB?0:mx*5);cam.position.z=Math.cos(ca)*cd;cam.position.y=2-sP*8-(IS_MOB?0:my*3);cam.lookAt(0,-sP*3,0);
 tk.rotation.x=t*.06+sP*Math.PI;tk.rotation.y=t*.1+sP*Math.PI*.5;ic.rotation.x=-t*.12;ic.rotation.y=-t*.18;ic.scale.setScalar(1+Math.sin(t*.4)*.12);
 rings.forEach(r=>{r.rotation.z+=r.userData.sp*.003;r.rotation.x+=r.userData.sp*.001});
 fls.forEach(s=>{const d=s.userData;d.a+=d.sp*.006;s.position.x=Math.cos(d.a)*d.r;s.position.z=Math.sin(d.a)*d.r;s.position.y=d.y+Math.sin(t*d.fs+d.a)*d.fa;s.rotation.x+=d.rx;s.rotation.y+=d.ry});
 const pts=S.children.find(c=>c instanceof THREE.Points);if(pts){pts.rotation.y=t*.012+sP*.4;pts.rotation.x=t*.006}
-if(lG&&lP){const pp=pG.attributes.position.array;let li=0;const mD=7,mD2=mD*mD;
-for(let i=0;i<P_N&&li<L_N;i++){const ix=i*3,iy=i*3+1,iz=i*3+2;
-for(let j=i+1;j<P_N&&li<L_N;j++){const jx=j*3,jy=j*3+1,jz=j*3+2;
-const dx=pp[ix]-pp[jx],dy=pp[iy]-pp[jy],dz=pp[iz]-pp[jz];
-if(dx*dx+dy*dy+dz*dz<mD2){lP[li*6]=pp[ix];lP[li*6+1]=pp[iy];lP[li*6+2]=pp[iz];lP[li*6+3]=pp[jx];lP[li*6+4]=pp[jy];lP[li*6+5]=pp[jz];li++}}}
-lG.setDrawRange(0,li*2);lG.attributes.position.needsUpdate=true}
-tk.material.color.setHSL((.7+sP*.2)%1,.8,.65);
-if(comp){comp.render()}else{R.render(S,cam)}
+if(lG&&lP){const pp=pG.attributes.position.array;let li=0;const mD=7,mD2=mD*mD;for(let i=0;i<P_N&&li<L_N;i++){const ix=i*3,iy=i*3+1,iz=i*3+2;for(let j=i+1;j<P_N&&li<L_N;j++){const jx=j*3,jy=j*3+1,jz=j*3+2;const dx=pp[ix]-pp[jx],dy=pp[iy]-pp[jy],dz=pp[iz]-pp[jz];if(dx*dx+dy*dy+dz*dz<mD2){lP[li*6]=pp[ix];lP[li*6+1]=pp[iy];lP[li*6+2]=pp[iz];lP[li*6+3]=pp[jx];lP[li*6+4]=pp[jy];lP[li*6+5]=pp[jz];li++}}}lG.setDrawRange(0,li*2);lG.attributes.position.needsUpdate=true}
+tk.material.color.setHSL((.7+sP*.2)%1,.8,.65);if(comp){comp.render()}else{R.render(S,cam)}
 if(firstFrame){firstFrame=false;document.getElementById('loader').classList.add('hidden')}}
 anim();
 if(!IS_MOB){Promise.all([import('three/addons/postprocessing/EffectComposer.js'),import('three/addons/postprocessing/RenderPass.js'),import('three/addons/postprocessing/UnrealBloomPass.js')]).then(([EC,RP,UB])=>{comp=new EC.EffectComposer(R);comp.addPass(new RP.RenderPass(S,cam));comp.addPass(new UB.UnrealBloomPass(new THREE.Vector2(innerWidth,innerHeight),1.3,.5,.2))}).catch(()=>{})}
 </script>
 
 <script>
-var RESUME_VIEW_URL='./Hemant_Bhargav_DV_Resume.pdf';
-var RESUME_DOWNLOAD_NAME='Hemant_Bhargav_DV_Resume.pdf';
+/* ===== CHANGE THIS to match your exact filename ===== */
+var RESUME_URL = './Hemant_Bhargav_DV_Resume.pdf';
+var RESUME_NAME = 'Hemant_Bhargav_DV_Resume.pdf';
+
 function easeOut(t){return 1-Math.pow(1-t,3)}
 var IS_MOB2=innerWidth<768;var ticking=false;
 function update3D(){if(ticking)return;ticking=true;requestAnimationFrame(function(){ticking=false;var vh=innerHeight;document.querySelectorAll('[data-3d]').forEach(function(el){var r=el.getBoundingClientRect();var cy=r.top+r.height/2;var raw=1-(cy/vh);var cl=Math.max(0,Math.min(1,raw));var d=parseFloat(el.dataset.d||0);var adj=Math.max(0,Math.min(1,(cl-d)/(1-d)));var e=easeOut(adj);var rx=parseFloat(el.dataset.rx||0),ry=parseFloat(el.dataset.ry||0),tx=parseFloat(el.dataset.tx||0),ty=parseFloat(el.dataset.ty||60),s=parseFloat(el.dataset.s||0.9);el.style.transform='perspective(1200px) rotateX('+(rx*(1-e))+'deg) rotateY('+(ry*(1-e))+'deg) translateX('+(tx*(1-e))+'px) translateY('+(ty*(1-e))+'px) scale('+(s+(1-s)*e)+')';el.style.opacity=e;if(el.dataset.clip==='left')el.style.clipPath='inset(0 '+(100-e*100)+'% 0 0)'})})}
@@ -528,9 +401,52 @@ function updateBar(){var m=document.body.scrollHeight-innerHeight;document.getEl
 addEventListener('scroll',function(){var n=document.getElementById('nav');if(scrollY>50){n.style.background='rgba(6,8,15,.9)';n.style.backdropFilter='blur(24px)';n.style.borderBottom='1px solid rgba(255,255,255,.03)'}else{n.style.background='transparent';n.style.backdropFilter='none';n.style.borderBottom='none'}updateBar();var c='';document.querySelectorAll('section[id]').forEach(function(s){if(scrollY>=s.offsetTop-140)c=s.id});document.querySelectorAll('.nav-l').forEach(function(l){l.classList.toggle('on',l.getAttribute('href')==='#'+c)})},{passive:true});
 if(!IS_MOB2){var glow=document.getElementById('cursorGlow');addEventListener('mousemove',function(e){glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'},{passive:true})}
 if(!IS_MOB2){document.querySelectorAll('.tilt').forEach(function(c){c.addEventListener('mousemove',function(e){var r=c.getBoundingClientRect();var x=(e.clientX-r.left)/r.width-.5;var y=(e.clientY-r.top)/r.height-.5;c.style.transform='perspective(800px) rotateY('+(x*18)+'deg) rotateX('+(-y*18)+'deg) scale(1.03)';c.style.boxShadow=(-x*25)+'px '+(y*25)+'px 50px rgba(129,140,248,.06),inset 0 0 1px rgba(129,140,248,.08)'});c.addEventListener('mouseleave',function(){c.style.transition='transform .6s cubic-bezier(.25,.46,.45,.94),box-shadow .6s';c.style.transform='perspective(800px) rotateY(0) rotateX(0) scale(1)';c.style.boxShadow='none';setTimeout(function(){c.style.transition=''},600)});c.addEventListener('mouseenter',function(){c.style.transition='none'})})}
-function openResume(){var modal=document.getElementById('resumeModal');var frame=document.getElementById('resumeFrame');var fallback=document.getElementById('resumeFallback');var fallbackLink=document.getElementById('resumeFallbackLink');var newTabLink=document.getElementById('resumeNewTab');frame.src=RESUME_VIEW_URL;newTabLink.href=RESUME_VIEW_URL;fallbackLink.href=RESUME_VIEW_URL;frame.classList.remove('hidden');fallback.classList.add('hidden');modal.classList.add('show');document.body.style.overflow='hidden'}
-function closeResume(){document.getElementById('resumeModal').classList.remove('show');document.body.style.overflow='';document.getElementById('resumeFrame').src=''}
-function downloadResume(){showToast('Downloading resume\u2026');fetch(RESUME_VIEW_URL).then(function(res){if(!res.ok)throw new Error('fail');return res.blob()}).then(function(blob){var url=URL.createObjectURL(blob);var a=document.createElement('a');a.href=url;a.download=RESUME_DOWNLOAD_NAME;document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);setTimeout(function(){showToast('Resume downloaded!')},300)}).catch(function(){showToast('Opening in new tab\u2026');window.open(RESUME_VIEW_URL,'_blank')})}
+
+/* ===== RESUME: auto-detect 404, show proper fallback ===== */
+function openResume(){
+  var modal=document.getElementById('resumeModal');
+  var frame=document.getElementById('resumeFrame');
+  var loading=document.getElementById('resumeLoading');
+  var fallback=document.getElementById('resumeFallback');
+  var fallbackLink=document.getElementById('resumeFallbackLink');
+  var newTabLink=document.getElementById('resumeNewTab');
+  newTabLink.href=RESUME_URL;
+  fallbackLink.href=RESUME_URL;
+  modal.classList.add('show');
+  document.body.style.overflow='hidden';
+  /* show loading, hide others */
+  loading.style.display='flex';loading.classList.remove('hidden');
+  frame.style.display='none';frame.src='';
+  fallback.style.display='none';fallback.classList.add('hidden');
+  /* check if file exists before loading iframe */
+  fetch(RESUME_URL,{method:'HEAD'}).then(function(res){
+    loading.style.display='none';
+    if(res.ok){
+      frame.src=RESUME_URL;frame.style.display='block';
+    }else{
+      showFallback();
+    }
+  }).catch(function(){
+    loading.style.display='none';showFallback();
+  });
+}
+function showFallback(){
+  document.getElementById('resumeFrame').style.display='none';
+  var fb=document.getElementById('resumeFallback');fb.classList.remove('hidden');fb.style.display='flex';
+}
+function closeResume(){
+  document.getElementById('resumeModal').classList.remove('show');document.body.style.overflow='';
+  document.getElementById('resumeFrame').src='';
+}
+function downloadResume(){
+  showToast('Downloading resume\u2026');
+  fetch(RESUME_URL).then(function(res){if(!res.ok)throw new Error('fail');return res.blob()}).then(function(blob){
+    var url=URL.createObjectURL(blob);var a=document.createElement('a');a.href=url;a.download=RESUME_NAME;
+    document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
+    setTimeout(function(){showToast('Downloaded!')},300);
+  }).catch(function(){showToast('Opening in new tab\u2026');window.open(RESUME_URL,'_blank')});
+}
+
 document.getElementById('resumeModal').addEventListener('click',function(e){if(e.target===e.querySelector('.modal-bg'))closeResume()});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeResume()});
 var mm=document.getElementById('mobMenu'),mo=document.getElementById('mobOv');
