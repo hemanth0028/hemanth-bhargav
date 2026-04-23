@@ -447,7 +447,7 @@
         <a href="tel:+919392519937" class="flex items-center gap-4 p-4 rounded-xl bg-white/[0.05] border border-white/[0.08] hover:border-indigo-500/25 transition-all group"><div class="w-11 h-11 rounded-xl bg-indigo-500/12 flex items-center justify-center group-hover:bg-indigo-500/20 transition-colors shrink-0"><span class="iconify text-xl text-indigo-400" data-icon="mdi:phone"></span></div><div><div class="text-[10px] text-gray-500 uppercase tracking-wider font-bold">Phone</div><div class="text-sm text-white font-medium">+91-9392519937</div></div></a>
         <div class="flex items-center gap-4 p-4 rounded-xl bg-white/[0.05] border border-white/[0.08]"><div class="w-11 h-11 rounded-xl bg-indigo-500/12 flex items-center justify-center shrink-0"><span class="iconify text-xl text-indigo-400" data-icon="mdi:map-marker"></span></div><div><div class="text-[10px] text-gray-500 uppercase tracking-wider font-bold">Location</div><div class="text-sm text-white font-medium">Gudivada, Andhra Pradesh</div></div></div>
         <a href="https://www.linkedin.com/in/hemanth-bhargav-kiladi-803a6923b" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 rounded-xl bg-white/[0.05] border border-white/[0.08] hover:border-indigo-500/25 transition-all group"><div class="w-11 h-11 rounded-xl bg-indigo-500/12 flex items-center justify-center group-hover:bg-indigo-500/20 transition-colors shrink-0"><span class="iconify text-xl text-indigo-400" data-icon="mdi:linkedin"></span></div><div><div class="text-[10px] text-gray-500 uppercase tracking-wider font-bold">LinkedIn</div><div class="text-sm text-white font-medium">Hemanth Bhargav Kiladi</div></div></a>
-        <a href="https://github.com/hemanth-bhargav" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 rounded-xl bg-white/[0.05] border border-white/[0.08] hover:border-indigo-500/25 transition-all group"><div class="w-11 h-11 rounded-xl bg-indigo-500/12 flex items-center justify-center group-hover:bg-indigo-500/20 transition-colors shrink-0"><span class="iconify text-xl text-indigo-400" data-icon="mdi:github"></span></div><div><div class="text-[10px] text-gray-500 uppercase tracking-wider font-bold">GitHub</div><div class="text-sm text-white font-medium">hemanth-bhargav</div></div></a>
+        <a href="https://github.com/hemanth0028" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 rounded-xl bg-white/[0.05] border border-white/[0.08] hover:border-indigo-500/25 transition-all group"><div class="w-11 h-11 rounded-xl bg-indigo-500/12 flex items-center justify-center group-hover:bg-indigo-500/20 transition-colors shrink-0"><span class="iconify text-xl text-indigo-400" data-icon="mdi:github"></span></div><div><div class="text-[10px] text-gray-500 uppercase tracking-wider font-bold">GitHub</div><div class="text-sm text-white font-medium">hemanth0028</div></div></a>
       </div>
       <div class="lg:col-span-3">
         <form id="contactForm" action="https://formspree.io/f/xdkobpod" method="POST" class="p-6 sm:p-8 rounded-2xl bg-white/[0.05] border border-white/[0.08] backdrop-blur-sm space-y-5" style="position:relative;z-index:70">
@@ -523,8 +523,12 @@ if(!IS_MOB){Promise.all([import('three/addons/postprocessing/EffectComposer.js')
 <!-- Page Interactions + PDF.js Resume Viewer -->
 <script>
 /* ── Resume Modal — iframe-based ── */
-var RESUME_PDF_URL = 'https://cdn.jsdelivr.net/gh/hemanth0028/hemanth-bhargav@main/Hemanth_Bhargav_DV_Resume.pdf';
-var RESUME_PDF_FALLBACK = 'https://raw.githubusercontent.com/hemanth0028/hemanth-bhargav/main/Hemanth_Bhargav_DV_Resume.pdf';
+// Since the PDF is in the same repo, use relative path when on GitHub Pages
+// Google Docs viewer wraps it so browsers don't block cross-origin PDFs
+var RESUME_FILENAME = 'Hemanth_Bhargav_DV_Resume.pdf';
+var RESUME_RAW_URL = 'https://raw.githubusercontent.com/hemanth0028/hemanth-bhargav/main/' + RESUME_FILENAME;
+var RESUME_GDOCS_URL = 'https://docs.google.com/viewer?embedded=true&url=' + encodeURIComponent(RESUME_RAW_URL);
+var RESUME_DL_URL = 'https://cdn.jsdelivr.net/gh/hemanth0028/hemanth-bhargav@main/' + RESUME_FILENAME;
 
 function resumeIframeLoaded() {
   document.getElementById('resumeIframeLoading').style.display = 'none';
@@ -538,8 +542,25 @@ function openResume() {
   document.body.style.overflow = 'hidden';
   iframe.style.display = 'none';
   document.getElementById('resumeIframeLoading').style.display = 'flex';
-  // Small delay so loading state renders before iframe starts loading
-  setTimeout(function() { iframe.src = RESUME_PDF_URL; }, 80);
+  // Try relative path first (works perfectly on GitHub Pages since PDF is in same repo)
+  // Fall back to Google Docs viewer if relative path fails
+  setTimeout(function() {
+    iframe.src = RESUME_FILENAME;
+    // If iframe fails to load within 4s, switch to Google Docs viewer
+    var fallbackTimer = setTimeout(function() {
+      if (iframe.style.display === 'none') {
+        iframe.src = RESUME_GDOCS_URL;
+      }
+    }, 4000);
+    iframe.onload = function() {
+      clearTimeout(fallbackTimer);
+      resumeIframeLoaded();
+    };
+    iframe.onerror = function() {
+      clearTimeout(fallbackTimer);
+      iframe.src = RESUME_GDOCS_URL;
+    };
+  }, 80);
 }
 
 function closeResume() {
