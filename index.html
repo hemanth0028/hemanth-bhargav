@@ -38,7 +38,7 @@
 .sec-div{height:1px;background:linear-gradient(90deg,transparent,rgba(129,140,248,.12),transparent)}
 #resumeModal{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .4s ease}#resumeModal.show{opacity:1;visibility:visible}
 #resumeModal .modal-bg{position:absolute;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(10px)}
-#resumeModal .modal-content{position:relative;z-index:1;width:94%;max-width:860px;height:90vh;background:linear-gradient(135deg,#0d1020,#111528);border:1px solid rgba(129,140,248,.15);border-radius:16px;overflow:hidden;transform:translateY(30px) scale(.95);transition:transform .4s cubic-bezier(.25,.46,.45,.94);box-shadow:0 25px 60px rgba(0,0,0,.5),0 0 40px rgba(99,102,241,.1);display:flex;flex-direction:column}#resumeModal.show .modal-content{transform:translateY(0) scale(1)}
+#resumeModal .modal-content{position:relative;z-index:1;width:96%;max-width:960px;height:94vh;background:linear-gradient(135deg,#0d1020,#111528);border:1px solid rgba(129,140,248,.15);border-radius:16px;overflow:hidden;transform:translateY(30px) scale(.95);transition:transform .4s cubic-bezier(.25,.46,.45,.94);box-shadow:0 25px 60px rgba(0,0,0,.5),0 0 40px rgba(99,102,241,.1);display:flex;flex-direction:column}#resumeModal.show .modal-content{transform:translateY(0) scale(1)}
 .pdf-scroll{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;align-items:center;gap:16px}
 .pdf-scroll::-webkit-scrollbar{width:6px}.pdf-scroll::-webkit-scrollbar-track{background:rgba(255,255,255,.02);border-radius:3px}.pdf-scroll::-webkit-scrollbar-thumb{background:rgba(129,140,248,.25);border-radius:3px}.pdf-scroll::-webkit-scrollbar-thumb:hover{background:rgba(129,140,248,.4)}
 .pdf-page-wrap{box-shadow:0 8px 40px rgba(0,0,0,.5),0 0 1px rgba(129,140,248,.15);border-radius:6px;overflow:hidden;line-height:0}
@@ -70,7 +70,7 @@
         <span class="font-semibold text-white text-sm sm:hidden">RESUME</span>
       </div>
       <div class="flex items-center gap-2">
-        <a id="resumeDlLink" href="#" download="Hemanth_Bhargav_DV_Resume.pdf" class="px-3 py-1.5 bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-xs font-semibold rounded-lg hover:bg-indigo-500/30 transition-all flex items-center gap-1.5">
+        <a id="resumeDlLink" href="https://cdn.jsdelivr.net/gh/hemanth0028/hemanth-bhargav@main/Hemanth_Bhargav_DV_Resume.pdf" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-xs font-semibold rounded-lg hover:bg-indigo-500/30 transition-all flex items-center gap-1.5">
           <span class="iconify text-sm" data-icon="mdi:download"></span><span class="hidden sm:inline">Download PDF</span>
         </a>
         <button onclick="closeResume()" class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
@@ -93,10 +93,10 @@
         <p class="text-gray-300 text-base font-medium">Resume PDF is ready</p>
         <p class="text-gray-500 text-sm max-w-xs">The PDF viewer couldn't load inline. Use the options below.</p>
         <div class="flex flex-col sm:flex-row gap-3 mt-2">
-          <a id="fallbackViewLink" href="#" target="_blank" rel="noopener noreferrer" class="px-5 py-3 bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-sm font-semibold rounded-xl hover:bg-indigo-500/30 transition-all flex items-center gap-2">
+          <a id="fallbackViewLink" href="https://cdn.jsdelivr.net/gh/hemanth0028/hemanth-bhargav@main/Hemanth_Bhargav_DV_Resume.pdf" target="_blank" rel="noopener noreferrer" class="px-5 py-3 bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-sm font-semibold rounded-xl hover:bg-indigo-500/30 transition-all flex items-center gap-2">
             <span class="iconify" data-icon="mdi:open-in-new"></span>View in New Tab
           </a>
-          <a id="fallbackDlLink" href="#" download="Hemanth_Bhargav_DV_Resume.pdf" class="px-5 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-sm font-semibold rounded-xl hover:shadow-lg hover:shadow-indigo-500/25 transition-all flex items-center gap-2">
+          <a id="fallbackDlLink" href="https://cdn.jsdelivr.net/gh/hemanth0028/hemanth-bhargav@main/Hemanth_Bhargav_DV_Resume.pdf" target="_blank" rel="noopener noreferrer" class="px-5 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-sm font-semibold rounded-xl hover:shadow-lg hover:shadow-indigo-500/25 transition-all flex items-center gap-2">
             <span class="iconify" data-icon="mdi:download"></span>Download PDF
           </a>
         </div>
@@ -469,14 +469,18 @@
         <a href="https://github.com/hemanth-bhargav" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 rounded-xl bg-white/[0.05] border border-white/[0.08] hover:border-indigo-500/25 transition-all group"><div class="w-11 h-11 rounded-xl bg-indigo-500/12 flex items-center justify-center group-hover:bg-indigo-500/20 transition-colors shrink-0"><span class="iconify text-xl text-indigo-400" data-icon="mdi:github"></span></div><div><div class="text-[10px] text-gray-500 uppercase tracking-wider font-bold">GitHub</div><div class="text-sm text-white font-medium">hemanth-bhargav</div></div></a>
       </div>
       <div class="lg:col-span-3">
-        <form id="contactForm" class="p-6 sm:p-8 rounded-2xl bg-white/[0.05] border border-white/[0.08] backdrop-blur-sm space-y-5" style="position:relative;z-index:70">
+        <form id="contactForm" action="https://formspree.io/f/xdkobpod" method="POST" class="p-6 sm:p-8 rounded-2xl bg-white/[0.05] border border-white/[0.08] backdrop-blur-sm space-y-5" style="position:relative;z-index:70">
+          <!-- Redirect back to the page after submit -->
+          <input type="hidden" name="_next" value="https://hemanth0028.github.io/hemanth-bhargav/?sent=1">
+          <input type="hidden" name="_subject" id="formSubjectHidden" value="New message from portfolio">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <div><label class="block text-[10px] text-gray-400 mb-2 uppercase tracking-[0.12em] font-bold">Your Name</label><input type="text" required placeholder="John Doe" class="w-full px-4 py-3 bg-white/[0.05] border border-white/[0.1] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500/40 focus:bg-white/[0.07] transition-all"></div>
-            <div><label class="block text-[10px] text-gray-400 mb-2 uppercase tracking-[0.12em] font-bold">Your Email</label><input type="email" required placeholder="john@company.com" class="w-full px-4 py-3 bg-white/[0.05] border border-white/[0.1] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500/40 focus:bg-white/[0.07] transition-all"></div>
+            <div><label class="block text-[10px] text-gray-400 mb-2 uppercase tracking-[0.12em] font-bold">Your Name</label><input type="text" name="name" required placeholder="John Doe" class="w-full px-4 py-3 bg-white/[0.05] border border-white/[0.1] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500/40 focus:bg-white/[0.07] transition-all"></div>
+            <div><label class="block text-[10px] text-gray-400 mb-2 uppercase tracking-[0.12em] font-bold">Your Email</label><input type="email" name="email" required placeholder="john@company.com" class="w-full px-4 py-3 bg-white/[0.05] border border-white/[0.1] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500/40 focus:bg-white/[0.07] transition-all"></div>
           </div>
-          <div><label class="block text-[10px] text-gray-400 mb-2 uppercase tracking-[0.12em] font-bold">Subject</label><input type="text" required placeholder="Internship Opportunity" class="w-full px-4 py-3 bg-white/[0.05] border border-white/[0.1] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500/40 focus:bg-white/[0.07] transition-all"></div>
-          <div><label class="block text-[10px] text-gray-400 mb-2 uppercase tracking-[0.12em] font-bold">Message</label><textarea rows="4" required placeholder="Tell me about the opportunity..." class="w-full px-4 py-3 bg-white/[0.05] border border-white/[0.1] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500/40 focus:bg-white/[0.07] transition-all resize-none"></textarea></div>
-          <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-bold rounded-xl hover:shadow-xl hover:shadow-indigo-500/25 hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-2 text-sm"><span class="iconify text-lg" data-icon="mdi:send"></span>Send Message</button>
+          <div><label class="block text-[10px] text-gray-400 mb-2 uppercase tracking-[0.12em] font-bold">Subject</label><input type="text" name="subject" id="subjectField" required placeholder="Internship Opportunity" class="w-full px-4 py-3 bg-white/[0.05] border border-white/[0.1] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500/40 focus:bg-white/[0.07] transition-all"></div>
+          <div><label class="block text-[10px] text-gray-400 mb-2 uppercase tracking-[0.12em] font-bold">Message</label><textarea rows="4" name="message" required placeholder="Tell me about the opportunity..." class="w-full px-4 py-3 bg-white/[0.05] border border-white/[0.1] rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500/40 focus:bg-white/[0.07] transition-all resize-none"></textarea></div>
+          <button type="submit" id="contactSubmitBtn" class="w-full py-3.5 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-bold rounded-xl hover:shadow-xl hover:shadow-indigo-500/25 hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-2 text-sm"><span class="iconify text-lg" data-icon="mdi:send"></span>Send Message</button>
+          <p class="text-center text-[11px] text-gray-600">Your message will be sent directly to <span class="text-indigo-400">k.hemanth2027@gmail.com</span></p>
         </form>
       </div>
     </div>
@@ -546,6 +550,8 @@ if(!IS_MOB){Promise.all([import('three/addons/postprocessing/EffectComposer.js')
  * ╚══════════════════════════════════════════════════════════════╝
  */
 var GITHUB_RESUME_URL = 'https://github.com/hemanth0028/hemanth-bhargav/blob/main/Hemanth_Bhargav_DV_Resume.pdf';
+var RESUME_RAW_URL = 'https://raw.githubusercontent.com/hemanth0028/hemanth-bhargav/main/Hemanth_Bhargav_DV_Resume.pdf';
+var RESUME_CDN_URL = 'https://cdn.jsdelivr.net/gh/hemanth0028/hemanth-bhargav@main/Hemanth_Bhargav_DV_Resume.pdf';
 var RESUME_NAME = 'Hemanth_Bhargav_DV_Resume.pdf';
 
 /* PDF.js worker */
@@ -553,22 +559,9 @@ if (typeof pdfjsLib !== 'undefined') {
   pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 }
 
-/* Parse GitHub URL and build CDN fallbacks */
-function parseGitHubUrl(url) {
-  var m = url.match(/github\.com\/([^\/]+)\/([^\/]+)\/blob\/([^\/]+)\/(.+)/);
-  if (m) return { user: m[1], repo: m[2], branch: m[3], path: m[4] };
-  m = url.match(/github\.com\/([^\/]+)\/([^\/]+)\/tree\/([^\/]+)\/(.+)/);
-  if (m) return { user: m[1], repo: m[2], branch: m[3], path: m[4] };
-  return null;
-}
-var parsed = parseGitHubUrl(GITHUB_RESUME_URL);
-var RESUME_URLS = [];
-if (parsed) {
-  RESUME_URLS.push('https://cdn.jsdelivr.net/gh/' + parsed.user + '/' + parsed.repo + '@' + parsed.branch + '/' + parsed.path);
-  RESUME_URLS.push('https://raw.githubusercontent.com/' + parsed.user + '/' + parsed.repo + '/' + parsed.branch + '/' + parsed.path);
-  RESUME_URLS.push(GITHUB_RESUME_URL);
-} else { RESUME_URLS.push(GITHUB_RESUME_URL); }
-var RESUME_DL_URL = RESUME_URLS[0];
+/* Use CDN first, then raw, then blob page as fallback */
+var RESUME_URLS = [RESUME_CDN_URL, RESUME_RAW_URL];
+var RESUME_DL_URL = RESUME_CDN_URL;
 
 /* ── Resume Modal with PDF.js ── */
 var pdfLoadAbort = null;
@@ -579,12 +572,6 @@ function openResume() {
   var pages = document.getElementById('pdfPages');
   var fallback = document.getElementById('pdfFallback');
   var footer = document.getElementById('pdfFooter');
-
-  /* Set all download/view links */
-  ['resumeDlLink','fallbackViewLink','fallbackDlLink'].forEach(function(id) {
-    var el = document.getElementById(id);
-    if (el) { el.href = RESUME_DL_URL; if (el.hasAttribute('download')) el.setAttribute('download', RESUME_NAME); }
-  });
 
   modal.classList.add('show');
   document.body.style.overflow = 'hidden';
@@ -636,7 +623,7 @@ function renderPdfPages(pdfData, container, loading) {
   pdfjsLib.getDocument({ data: pdfData }).promise.then(function(pdf) {
     var numPages = pdf.numPages;
     var containerW = container.clientWidth - 40;
-    if (containerW < 200) containerW = 300;
+    if (containerW < 300) containerW = 320;
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     /* Show container, hide loading */
@@ -777,10 +764,42 @@ mo.addEventListener('click', closeMob);
 document.querySelectorAll('.ml').forEach(function(l) { l.addEventListener('click', closeMob); });
 
 /* Toast */
-function showToast(m) { var t = document.getElementById('toast'); document.getElementById('toastMsg').textContent = m; t.classList.add('show'); setTimeout(function() { t.classList.remove('show'); }, 3000); }
+function showToast(m) { var t = document.getElementById('toast'); document.getElementById('toastMsg').textContent = m; t.classList.add('show'); setTimeout(function() { t.classList.remove('show'); }, 4000); }
 
-/* Contact Form */
-document.getElementById('contactForm').addEventListener('submit', function(e) { e.preventDefault(); showToast("Message sent! I'll get back to you soon."); e.target.reset(); });
+/* Show success toast if redirected back after form submit */
+if (new URLSearchParams(location.search).get('sent') === '1') {
+  setTimeout(function() { showToast('✅ Message sent! Hemanth will get back to you soon.'); }, 800);
+  history.replaceState(null, '', location.pathname);
+}
+
+/* Contact Form — Formspree AJAX */
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var form = e.target;
+  var btn = document.getElementById('contactSubmitBtn');
+  var subjectField = document.getElementById('subjectField');
+  // Sync subject to hidden field for email subject line
+  document.getElementById('formSubjectHidden').value = subjectField.value || 'New message from portfolio';
+  btn.disabled = true;
+  btn.innerHTML = '<span style="width:18px;height:18px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;display:inline-block;animation:spin .7s linear infinite"></span> Sending...';
+  var data = new FormData(form);
+  fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+    .then(function(resp) {
+      if (resp.ok) {
+        showToast('✅ Message sent! Hemanth will get back to you soon.');
+        form.reset();
+      } else {
+        return resp.json().then(function(d) { throw new Error(d.errors ? d.errors.map(function(x){return x.message;}).join(', ') : 'Server error'); });
+      }
+    })
+    .catch(function(err) {
+      showToast('❌ Failed to send. Please email directly: k.hemanth2027@gmail.com');
+    })
+    .finally(function() {
+      btn.disabled = false;
+      btn.innerHTML = '<span class="iconify text-lg" data-icon="mdi:send"></span>Send Message';
+    });
+});
 
 /* Smooth Scroll */
 document.querySelectorAll('a[href^="#"]').forEach(function(a) {
