@@ -7,7 +7,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'Inter',sans-serif;background:#06080f;color:#fff;overflow-x:hidden}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:#06080f}::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#818cf8,#6366f1);border-radius:2px}
@@ -36,13 +35,15 @@
 .mob-menu{position:fixed;top:0;right:0;bottom:0;width:280px;z-index:60;background:rgba(6,8,15,.97);backdrop-filter:blur(24px);border-left:1px solid rgba(255,255,255,.04);padding:80px 32px 32px;transform:translateX(100%);transition:transform .3s}.mob-menu.open{transform:translateX(0)}.mob-ov{position:fixed;inset:0;z-index:55;background:rgba(0,0,0,.6);display:none}.mob-ov.show{display:block}
 .tline{background:linear-gradient(to bottom,transparent,#818cf8,#6366f1,#818cf8,transparent)}
 .sec-div{height:1px;background:linear-gradient(90deg,transparent,rgba(129,140,248,.12),transparent)}
-#resumeModal{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .4s ease}#resumeModal.show{opacity:1;visibility:visible}
-#resumeModal .modal-bg{position:absolute;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(10px)}
-#resumeModal .modal-content{position:relative;z-index:1;width:96%;max-width:960px;height:94vh;background:linear-gradient(135deg,#0d1020,#111528);border:1px solid rgba(129,140,248,.15);border-radius:16px;overflow:hidden;transform:translateY(30px) scale(.95);transition:transform .4s cubic-bezier(.25,.46,.45,.94);box-shadow:0 25px 60px rgba(0,0,0,.5),0 0 40px rgba(99,102,241,.1);display:flex;flex-direction:column}#resumeModal.show .modal-content{transform:translateY(0) scale(1)}
-.pdf-scroll{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;align-items:center;gap:16px}
-.pdf-scroll::-webkit-scrollbar{width:6px}.pdf-scroll::-webkit-scrollbar-track{background:rgba(255,255,255,.02);border-radius:3px}.pdf-scroll::-webkit-scrollbar-thumb{background:rgba(129,140,248,.25);border-radius:3px}.pdf-scroll::-webkit-scrollbar-thumb:hover{background:rgba(129,140,248,.4)}
-.pdf-page-wrap{box-shadow:0 8px 40px rgba(0,0,0,.5),0 0 1px rgba(129,140,248,.15);border-radius:6px;overflow:hidden;line-height:0}
-.pdf-page-wrap canvas{display:block;border-radius:6px}
+/* Resume Modal — iframe-based, reliable */
+#resumeModal{position:fixed;inset:0;z-index:200;background:rgba(6,8,15,.97);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;flex-direction:column;gap:1.2rem}
+#resumeModal.show{display:flex}
+#resumeModal .modal-content{position:relative;width:min(920px,95vw);max-height:92vh;background:linear-gradient(135deg,#0d1020,#111528);border:1px solid rgba(129,140,248,.25);border-radius:16px;overflow:hidden;box-shadow:0 25px 80px rgba(0,0,0,.7),0 0 40px rgba(99,102,241,.12);display:flex;flex-direction:column}
+#resumeModal .modal-content::after{content:'// RESUME_VIEWER';position:absolute;top:14px;right:60px;font-size:.52rem;color:rgba(129,140,248,.3);letter-spacing:.15em;pointer-events:none}
+.resume-iframe-wrap{flex:1;min-height:0;display:flex;flex-direction:column}
+.resume-iframe-wrap iframe{width:100%;flex:1;min-height:78vh;border:none;display:block;background:#fff}
+.resume-iframe-loading{display:flex;align-items:center;justify-content:center;min-height:78vh;flex-direction:column;gap:16px}
+.resume-esc-hint{font-size:.55rem;color:rgba(129,140,248,.3);letter-spacing:.2em;text-align:center}
 .proj-vis{background:linear-gradient(135deg,#0b0e1a,#10142a);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .proj-vis::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(129,140,248,.04) 0%,transparent 70%)}
 @media(max-width:768px){.chip-flt{animation:none}}
@@ -58,55 +59,35 @@
 <canvas id="bg3d"></canvas>
 <div id="toast" class="toast"><span class="iconify text-indigo-400 text-xl" data-icon="mdi:check-circle"></span><span id="toastMsg" class="text-sm text-gray-200"></span></div>
 
-<!-- Resume Modal (PDF.js Renderer) -->
+<!-- Resume Modal — iframe-based -->
 <div id="resumeModal">
-  <div class="modal-bg"></div>
   <div class="modal-content">
     <!-- Header -->
-    <div class="flex items-center justify-between px-4 sm:px-5 py-3 bg-[#0d1020]/95 backdrop-blur-md border-b border-white/5 shrink-0">
+    <div class="flex items-center justify-between px-5 py-3.5 bg-[#0a0d1c] border-b border-indigo-500/20 shrink-0">
       <div class="flex items-center gap-3">
         <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center font-bold text-white text-sm">H</div>
-        <span class="font-semibold text-white text-sm hidden sm:inline">HEMANTH BHARGAV — RESUME</span>
+        <span class="font-semibold text-white text-sm tracking-wide hidden sm:inline">HEMANTH BHARGAV — RESUME</span>
         <span class="font-semibold text-white text-sm sm:hidden">RESUME</span>
       </div>
       <div class="flex items-center gap-2">
-        <a id="resumeDlLink" href="https://cdn.jsdelivr.net/gh/hemanth0028/hemanth-bhargav@main/Hemanth_Bhargav_DV_Resume.pdf" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-xs font-semibold rounded-lg hover:bg-indigo-500/30 transition-all flex items-center gap-1.5">
+        <a href="https://cdn.jsdelivr.net/gh/hemanth0028/hemanth-bhargav@main/Hemanth_Bhargav_DV_Resume.pdf" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-indigo-500 text-white text-xs font-bold rounded-lg hover:bg-indigo-400 transition-all flex items-center gap-1.5 shadow-lg shadow-indigo-500/25">
           <span class="iconify text-sm" data-icon="mdi:download"></span><span class="hidden sm:inline">Download PDF</span>
         </a>
-        <button onclick="closeResume()" class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
+        <button onclick="closeResume()" class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors">
           <span class="iconify text-gray-400" data-icon="mdi:close"></span>
         </button>
       </div>
     </div>
-    <!-- PDF Body -->
-    <div class="flex-1 min-h-0 relative bg-[#1a1d2e]">
-      <!-- Loading -->
-      <div id="pdfLoading" class="absolute inset-0 flex flex-col items-center justify-center gap-3 z-10 bg-[#1a1d2e]">
+    <!-- Iframe body -->
+    <div class="resume-iframe-wrap">
+      <div class="resume-iframe-loading" id="resumeIframeLoading">
         <div class="spinner"></div>
-        <p class="text-gray-400 text-sm">Loading resume...</p>
+        <p class="text-gray-500 text-xs tracking-widest uppercase">Loading resume...</p>
       </div>
-      <!-- PDF Pages Container -->
-      <div id="pdfPages" class="pdf-scroll" style="display:none"></div>
-      <!-- Fallback -->
-      <div id="pdfFallback" class="absolute inset-0 flex flex-col items-center justify-center gap-4 p-12 text-center bg-[#0d1020] z-20" style="display:none">
-        <span class="iconify text-5xl text-gray-600" data-icon="mdi:file-pdf-box"></span>
-        <p class="text-gray-300 text-base font-medium">Resume PDF is ready</p>
-        <p class="text-gray-500 text-sm max-w-xs">The PDF viewer couldn't load inline. Use the options below.</p>
-        <div class="flex flex-col sm:flex-row gap-3 mt-2">
-          <a id="fallbackViewLink" href="https://cdn.jsdelivr.net/gh/hemanth0028/hemanth-bhargav@main/Hemanth_Bhargav_DV_Resume.pdf" target="_blank" rel="noopener noreferrer" class="px-5 py-3 bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-sm font-semibold rounded-xl hover:bg-indigo-500/30 transition-all flex items-center gap-2">
-            <span class="iconify" data-icon="mdi:open-in-new"></span>View in New Tab
-          </a>
-          <a id="fallbackDlLink" href="https://cdn.jsdelivr.net/gh/hemanth0028/hemanth-bhargav@main/Hemanth_Bhargav_DV_Resume.pdf" target="_blank" rel="noopener noreferrer" class="px-5 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-sm font-semibold rounded-xl hover:shadow-lg hover:shadow-indigo-500/25 transition-all flex items-center gap-2">
-            <span class="iconify" data-icon="mdi:download"></span>Download PDF
-          </a>
-        </div>
-      </div>
-    </div>
-    <!-- Footer with page info -->
-    <div id="pdfFooter" class="flex items-center justify-center px-5 py-2 bg-[#0a0c18]/95 border-t border-white/5 shrink-0" style="display:none">
-      <span id="pageInfo" class="text-xs text-gray-500 font-medium"></span>
+      <iframe id="resumeIframe" src="" style="display:none" onload="resumeIframeLoaded()"></iframe>
     </div>
   </div>
+  <div class="resume-esc-hint">PRESS ESC OR CLICK OUTSIDE TO CLOSE</div>
 </div>
 
 <!-- Navigation -->
@@ -541,160 +522,45 @@ if(!IS_MOB){Promise.all([import('three/addons/postprocessing/EffectComposer.js')
 
 <!-- Page Interactions + PDF.js Resume Viewer -->
 <script>
-/*
- * ╔══════════════════════════════════════════════════════════════╗
- * ║  RESUME CONFIG — Change ONLY this one URL                  ║
- * ║                                                              ║
- * ║  Paste your GitHub resume PDF file URL here:                ║
- * ║  https://github.com/hemanth-bhargav/repo/blob/main/res.pdf  ║
- * ╚══════════════════════════════════════════════════════════════╝
- */
-var GITHUB_RESUME_URL = 'https://github.com/hemanth0028/hemanth-bhargav/blob/main/Hemanth_Bhargav_DV_Resume.pdf';
-var RESUME_RAW_URL = 'https://raw.githubusercontent.com/hemanth0028/hemanth-bhargav/main/Hemanth_Bhargav_DV_Resume.pdf';
-var RESUME_CDN_URL = 'https://cdn.jsdelivr.net/gh/hemanth0028/hemanth-bhargav@main/Hemanth_Bhargav_DV_Resume.pdf';
-var RESUME_NAME = 'Hemanth_Bhargav_DV_Resume.pdf';
+/* ── Resume Modal — iframe-based ── */
+var RESUME_PDF_URL = 'https://cdn.jsdelivr.net/gh/hemanth0028/hemanth-bhargav@main/Hemanth_Bhargav_DV_Resume.pdf';
+var RESUME_PDF_FALLBACK = 'https://raw.githubusercontent.com/hemanth0028/hemanth-bhargav/main/Hemanth_Bhargav_DV_Resume.pdf';
 
-/* PDF.js worker */
-if (typeof pdfjsLib !== 'undefined') {
-  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+function resumeIframeLoaded() {
+  document.getElementById('resumeIframeLoading').style.display = 'none';
+  document.getElementById('resumeIframe').style.display = 'block';
 }
-
-/* Use CDN first, then raw, then blob page as fallback */
-var RESUME_URLS = [RESUME_CDN_URL, RESUME_RAW_URL];
-var RESUME_DL_URL = RESUME_CDN_URL;
-
-/* ── Resume Modal with PDF.js ── */
-var pdfLoadAbort = null;
 
 function openResume() {
   var modal = document.getElementById('resumeModal');
-  var loading = document.getElementById('pdfLoading');
-  var pages = document.getElementById('pdfPages');
-  var fallback = document.getElementById('pdfFallback');
-  var footer = document.getElementById('pdfFooter');
-
+  var iframe = document.getElementById('resumeIframe');
   modal.classList.add('show');
   document.body.style.overflow = 'hidden';
-  loading.style.display = 'flex';
-  pages.style.display = 'none';
-  pages.innerHTML = '';
-  fallback.style.display = 'none';
-  footer.style.display = 'none';
-
-  if (pdfLoadAbort) { pdfLoadAbort.abort(); pdfLoadAbort = null; }
-
-  /* Wait for modal to be visible, then render */
-  requestAnimationFrame(function() { requestAnimationFrame(function() { loadAndRenderPDF(); }); });
-}
-
-function loadAndRenderPDF() {
-  if (typeof pdfjsLib === 'undefined') { showPdfFallback(); return; }
-
-  var loading = document.getElementById('pdfLoading');
-  var pages = document.getElementById('pdfPages');
-  var urlIdx = 0;
-
-  function tryUrl() {
-    if (urlIdx >= RESUME_URLS.length) { showPdfFallback(); return; }
-    var url = RESUME_URLS[urlIdx];
-    urlIdx++;
-
-    var controller = new AbortController();
-    pdfLoadAbort = controller;
-
-    fetch(url, { signal: controller.signal })
-      .then(function(resp) {
-        if (!resp.ok) throw new Error('HTTP ' + resp.status);
-        return resp.arrayBuffer();
-      })
-      .then(function(data) {
-        pdfLoadAbort = null;
-        renderPdfPages(data, pages, loading);
-      })
-      .catch(function(err) {
-        if (err.name === 'AbortError') return;
-        tryUrl();
-      });
-  }
-  tryUrl();
-}
-
-function renderPdfPages(pdfData, container, loading) {
-  pdfjsLib.getDocument({ data: pdfData }).promise.then(function(pdf) {
-    var numPages = pdf.numPages;
-    var containerW = container.clientWidth - 40;
-    if (containerW < 300) containerW = 320;
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-    /* Show container, hide loading */
-    container.style.display = 'flex';
-    loading.style.display = 'none';
-    document.getElementById('pdfFooter').style.display = 'flex';
-    document.getElementById('pageInfo').textContent = 'Page 1 of ' + numPages;
-
-    /* Track scroll for page indicator */
-    container.onscroll = function() {
-      var scrollTop = container.scrollTop;
-      var canvases = container.querySelectorAll('canvas');
-      for (var i = 0; i < canvases.length; i++) {
-        if (canvases[i].offsetTop - container.offsetTop > scrollTop) break;
-      }
-      document.getElementById('pageInfo').textContent = 'Page ' + (i > 0 ? i : 1) + ' of ' + numPages;
-    };
-
-    /* Render pages sequentially to maintain order */
-    var chain = Promise.resolve();
-    for (var p = 1; p <= numPages; p++) {
-      (function(pageNum) {
-        chain = chain.then(function() {
-          return pdf.getPage(pageNum).then(function(page) {
-            var vp = page.getViewport({ scale: 1 });
-            var scale = containerW / vp.width;
-            var svp = page.getViewport({ scale: scale });
-
-            var wrap = document.createElement('div');
-            wrap.className = 'pdf-page-wrap';
-            wrap.style.width = Math.floor(svp.width) + 'px';
-
-            var cvs = document.createElement('canvas');
-            cvs.width = Math.floor(svp.width * dpr);
-            cvs.height = Math.floor(svp.height * dpr);
-            cvs.style.width = Math.floor(svp.width) + 'px';
-            cvs.style.height = Math.floor(svp.height) + 'px';
-
-            var ctx = cvs.getContext('2d');
-            ctx.scale(dpr, dpr);
-
-            wrap.appendChild(cvs);
-            container.appendChild(wrap);
-
-            return page.render({ canvasContext: ctx, viewport: svp }).promise;
-          });
-        });
-      })(p);
-    }
-    return chain;
-  }).catch(function() {
-    showPdfFallback();
-  });
-}
-
-function showPdfFallback() {
-  document.getElementById('pdfLoading').style.display = 'none';
-  document.getElementById('pdfPages').style.display = 'none';
-  document.getElementById('pdfFooter').style.display = 'none';
-  var fb = document.getElementById('pdfFallback');
-  fb.classList.remove('hidden');
-  fb.style.display = 'flex';
+  iframe.style.display = 'none';
+  document.getElementById('resumeIframeLoading').style.display = 'flex';
+  // Small delay so loading state renders before iframe starts loading
+  setTimeout(function() { iframe.src = RESUME_PDF_URL; }, 80);
 }
 
 function closeResume() {
-  if (pdfLoadAbort) { pdfLoadAbort.abort(); pdfLoadAbort = null; }
-  document.getElementById('resumeModal').classList.remove('show');
+  var modal = document.getElementById('resumeModal');
+  var iframe = document.getElementById('resumeIframe');
+  modal.classList.remove('show');
   document.body.style.overflow = '';
-  document.getElementById('pdfPages').innerHTML = '';
-  document.getElementById('pdfPages').onscroll = null;
+  // Reset for next open
+  setTimeout(function() {
+    iframe.src = '';
+    iframe.style.display = 'none';
+    document.getElementById('resumeIframeLoading').style.display = 'flex';
+  }, 300);
 }
+
+/* Close when clicking outside the modal box */
+document.getElementById('resumeModal').addEventListener('click', function(e) {
+  if (e.target === this) closeResume();
+});
+
+
 
 /* 3D Scroll Animations */
 function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
@@ -750,8 +616,6 @@ if (!IS_MOB2) {
   });
 }
 
-/* Modal close */
-document.getElementById('resumeModal').addEventListener('click', function(e) { if (e.target === e.currentTarget.querySelector('.modal-bg')) closeResume(); });
 document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeResume(); });
 
 /* Mobile Menu */
