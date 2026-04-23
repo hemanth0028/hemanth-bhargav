@@ -70,7 +70,7 @@
         <span class="font-semibold text-white text-sm sm:hidden">RESUME</span>
       </div>
       <div class="flex items-center gap-2">
-        <a id="resumeDlLink" href="#" download="Hemant_Bhargav_DV_Resume.pdf" class="px-3 py-1.5 bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-xs font-semibold rounded-lg hover:bg-indigo-500/30 transition-all flex items-center gap-1.5">
+        <a id="resumeDlLink" href="#" download="Hemanth_Bhargav_DV_Resume.pdf" class="px-3 py-1.5 bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-xs font-semibold rounded-lg hover:bg-indigo-500/30 transition-all flex items-center gap-1.5">
           <span class="iconify text-sm" data-icon="mdi:download"></span><span class="hidden sm:inline">Download PDF</span>
         </a>
         <button onclick="closeResume()" class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
@@ -96,7 +96,7 @@
           <a id="fallbackViewLink" href="#" target="_blank" rel="noopener noreferrer" class="px-5 py-3 bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-sm font-semibold rounded-xl hover:bg-indigo-500/30 transition-all flex items-center gap-2">
             <span class="iconify" data-icon="mdi:open-in-new"></span>View in New Tab
           </a>
-          <a id="fallbackDlLink" href="#" download="Hemant_Bhargav_DV_Resume.pdf" class="px-5 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-sm font-semibold rounded-xl hover:shadow-lg hover:shadow-indigo-500/25 transition-all flex items-center gap-2">
+          <a id="fallbackDlLink" href="#" download="Hemanth_Bhargav_DV_Resume.pdf" class="px-5 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-sm font-semibold rounded-xl hover:shadow-lg hover:shadow-indigo-500/25 transition-all flex items-center gap-2">
             <span class="iconify" data-icon="mdi:download"></span>Download PDF
           </a>
         </div>
@@ -545,8 +545,8 @@ if(!IS_MOB){Promise.all([import('three/addons/postprocessing/EffectComposer.js')
  * ║  https://github.com/hemanth-bhargav/repo/blob/main/res.pdf  ║
  * ╚══════════════════════════════════════════════════════════════╝
  */
-var GITHUB_RESUME_URL = 'https://github.com/hemanth-bhargav/hemanth-bhargav.github.io/blob/main/Hemant_Bhargav_DV_Resume.pdf';
-var RESUME_NAME = 'Hemant_Bhargav_DV_Resume.pdf';
+var GITHUB_RESUME_URL = 'https://github.com/hemanth0028/hemanth-bhargav/blob/main/Hemanth_Bhargav_DV_Resume.pdf';
+var RESUME_NAME = 'Hemanth_Bhargav_DV_Resume.pdf';
 
 /* PDF.js worker */
 if (typeof pdfjsLib !== 'undefined') {
@@ -764,7 +764,7 @@ if (!IS_MOB2) {
 }
 
 /* Modal close */
-document.getElementById('resumeModal').addEventListener('click', function(e) { if (e.target === e.querySelector('.modal-bg')) closeResume(); });
+document.getElementById('resumeModal').addEventListener('click', function(e) { if (e.target === e.currentTarget.querySelector('.modal-bg')) closeResume(); });
 document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeResume(); });
 
 /* Mobile Menu */
